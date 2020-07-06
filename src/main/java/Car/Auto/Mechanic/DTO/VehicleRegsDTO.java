@@ -1,25 +1,20 @@
 package Car.Auto.Mechanic.DTO;
 
-import javax.validation.constraints.NotEmpty;
+public class VehicleRegsDTO {
 
-public class VehicleRegistrationDTO {
-
-	@NotEmpty
 	private String make;
-	@NotEmpty
 	private String model;
-	@NotEmpty
 	private String year;
-	
-	@NotEmpty
 	private String licence;
-	@NotEmpty
 	private String engine;
-	
 	private String status;
-	
 	private String comments;
 	
+	
+	public VehicleRegsDTO() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	public String getMake() {
 		return make;
 	}

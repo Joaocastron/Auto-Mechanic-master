@@ -1,18 +1,15 @@
 package Car.Auto.Mechanic.Services;
 
-import Car.Auto.Mechanic.DTO.VehicleRegistrationDTO;
+
+
+import Car.Auto.Mechanic.DTO.VehicleRegsDTO;
 import Car.Auto.Mechanic.Entity.Vehicle;
-import Car.Auto.Mechanic.Repository.VehicleRepository;
 
-
-public interface VehicleService    {
-	
-    Vehicle findByLicence(String licence);
-
-    Vehicle save(VehicleRegistrationDTO vehicleDTO);
-
+public interface VehicleService {
 
 	
-	
+	Vehicle findByLincence(String licence);
+
+	Vehicle save(VehicleRegsDTO vehicleRegsDTO);
 
 }

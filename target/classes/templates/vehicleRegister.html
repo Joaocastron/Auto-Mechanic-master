@@ -5,11 +5,10 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link rel="stylesheet" type="text/css" th:href="@{/webjars/bootstrap/3.3.7/css/bootstrap.min.css}" />
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-   
-
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -19,35 +18,36 @@
                 </div>
 
                 <h1>Vehicle Registration</h1>
-                <form th:action="@{/Vehicleregister}" th:object="${vehicle}" method="POST">
-                    <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-errors': ''">
-                        <label for="name" class="control-label">Name</label>
-                        <input id="name" type="text" class="form-control" th:field="*{name}" />
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('name')}" th:text="${error}">Validation error</p> -->
+                <form th:action="@{/vehicleRegister}" th:object="${vehicle}" method="POST">
+                    <div class="form-group" th:classappend="${#fields.hasErrors('make')} ? 'has-errors': ''">
+                        <label for="make" class="control-label">Make</label>
+                        <input id="make" type="text" class="form-control" th:field="*{make}" />
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('make')}" th:text="${error}">Validation error</p> -->
                     </div>
-                    
-                    <form th:action="@{/register}" th:object="${user}" method="POST">
-                    <div class="form-group" th:classappend="${#fields.hasErrors('surname')} ? 'has-errors': ''">
-                        <label for="surname" class="control-label">Surname</label>
-                        <input id="surname" type="text" class="form-control" th:field="*{surname}" />
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('surname')}" th:text="${error}">Validation error</p> -->
+                    <div class="form-group" th:classappend="${#fields.hasErrors('model')} ? 'has-errors': ''">
+                        <label for="model" class="control-label">Model</label>
+                        <input id="model" class=" form-control" th:field="*{model}"/>
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('model')}" th:text="${error}">Validation error</p> -->
                     </div>
-                      <form th:action="@{/register}" th:object="${user}" method="POST">
-                    <div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? 'has-errors': ''">
-                        <label for="phone" class="control-label">Phone Number</label>
-                        <input id="phone" type="text" class="form-control" th:field="*{phone}" />
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('phone')}" th:text="${error}">Validation error</p> -->
+                    <div class="form-group" th:classappend="${#fields.hasErrors('year')} ? 'has-errors': ''">
+                        <label for="year" class="control-label">Year</label>
+                        <input id="year" class=" form-control" th:field="*{year}"/>
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('year')}" th:text="${error}">Validation error</p> -->
                     </div>
-                    
-                    <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-errors': ''">
-                        <label for="email" class="control-label">E-mail</label>
-                        <input id="email" class=" form-control" th:field="*{email}">
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('email')}" th:text="${error}">Validation error</p> -->
+                     <div class="form-group" th:classappend="${#fields.hasErrors('licence')} ? 'has-errors': ''">
+                        <label for="licence" class="control-label">Licence</label>
+                        <input id="licence" class=" form-control" th:field="*{licence}"/>
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('licence')}" th:text="${error}">Validation error</p> -->
                     </div>
-                    <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-errors': ''">
-                        <label for="password" class="control-label">Password</label>
-                        <input id="password" class=" form-control" th:field="*{password}">
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('password')}" th:text="${error}">Validation error</p> -->
+                     <div class="form-group" th:classappend="${#fields.hasErrors('engine')} ? 'has-errors': ''">
+                        <label for="engine" class="control-label">Engine</label>
+                        <input id="engine" class=" form-control" th:field="*{engine}"/>
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('engine')}" th:text="${error}">Validation error</p> -->
+                    </div>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('comments')} ? 'has-errors': ''">
+                        <label for="comments" class="control-label">Comments</label>
+                        <input id="comments" class=" form-control" th:field="*{comments}"/>
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('comments')}" th:text="${error}">Validation error</p> -->
                     </div>
                     <div class="form-froup">
                         <button type="submit" class="btn btn-success">Register</button>
@@ -57,7 +57,9 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>
