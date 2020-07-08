@@ -24,6 +24,17 @@
                         <input id="name" type="text" class="form-control" th:field="*{name}" />
                         <!-- <p class="error-message" th:each="error: ${#fields.error('name')}" th:text="${error}">Validation error</p> -->
                     </div>
+                    <div class="form-group" th:classappend="${#fields.hasErrors('surname')} ? 'has-errors': ''">
+                        <label for="surname" class="control-label">Surname</label>
+                        <input id="surname" type="text" class="form-control" th:field="*{surname}" />
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('surname')}" th:text="${error}">Validation error</p> -->
+                    </div>
+                     <div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? 'has-errors': ''">
+                        <label for="phone" class="control-label">Phone Number</label>
+                        <input id="phone" type="text" class="form-control" th:field="*{phone}" />
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('phone')}" th:text="${error}">Validation error</p> -->
+                    </div>
+                    
                     <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-errors': ''">
                         <label for="email" class="control-label">E-mail</label>
                         <input id="email" class=" form-control" th:field="*{email}"/>

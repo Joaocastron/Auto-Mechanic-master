@@ -36,9 +36,9 @@ public class VehicleRegisterController {
 	@PostMapping("/vehicleRegister")
 	public String vehicleRegister(@ModelAttribute("vehicle") @Valid VehicleRegsDTO vehicleDTO, BindingResult result) {
 
-		Vehicle existingUser = vehicleService.findByLincence(vehicleDTO.getLicence());
+		Vehicle existingVehicle = vehicleService.findByLincence(vehicleDTO.getLicence());
 
-		if (existingUser != null) {
+		if (existingVehicle != null) {
 			result.rejectValue("licence", null, "There is already an car registered with this licence!");
 		}
 

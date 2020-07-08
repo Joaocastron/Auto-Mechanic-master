@@ -1,5 +1,6 @@
 package Car.Auto.Mechanic.DTO;
 
+
 public class VehicleRegsDTO {
 
 	private String make;

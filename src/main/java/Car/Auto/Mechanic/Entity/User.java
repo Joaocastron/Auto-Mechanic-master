@@ -11,63 +11,82 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
-    public User() {
-        super();
-    }
+	public User() {
+		super();
+	}
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
 
-    private String name;
+	private String name;
 
-    private String email;
+	private String surname;
 
-    private String password;
+	private String phone;
 
-    @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "user_roles",
-        joinColumns = @JoinColumn(name = "user_id"),
-        inverseJoinColumns = @JoinColumn(name = "role_id"))
-    private Collection<Role> roles;
+	private String email;
 
-    public String getName(){
-        return name;
-    }
+	private String password;
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	@OneToMany(fetch = FetchType.LAZY)
+	@JoinTable(name = "Vehicle_id")
+	private Collection<Vehicle> vehicle;
 
-    public String getEmail(){
-        return email;
-    }
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "user_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
+	private Collection<Role> roles;
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getPassword(){
-        return password;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	public String getSurname() {
+		return surname;
+	}
 
-    public Collection<Role> getRoles(){
-        return roles;
-    }
+	public void setSurname(String surname) {
+		this.surname = surname;
+	}
 
-    public void setRoles(Collection<Role> roles) {
-        this.roles = roles;
-    }
+	public String getPhone() {
+		return phone;
+	}
 
-    public Collection<? extends GrantedAuthority> getAuthority()
-    {
-        Collection<Role> roles = getRoles();
-        return roles.stream()
-            .map(role -> new SimpleGrantedAuthority(role.getName()))
-            .collect(Collectors.toList());
-    }
+	public void setPhone(String phone) {
+		this.phone = phone;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
+	}
+
+	public Collection<? extends GrantedAuthority> getAuthority() {
+		Collection<Role> roles = getRoles();
+		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
+	}
 }

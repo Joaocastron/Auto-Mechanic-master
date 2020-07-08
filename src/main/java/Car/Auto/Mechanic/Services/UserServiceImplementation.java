@@ -26,6 +26,8 @@ public class UserServiceImplementation implements UserService {
     public User save(UserRegistrationDTO userDTO) {
         User user = new User();
         user.setName(userDTO.getName());
+        user.setSurname(userDTO.getSurname());
+        user.setPhone(userDTO.getPhone());
         user.setEmail(userDTO.getEmail());
         // Encode password to ensure a leek does not compromisse the system
         user.setPassword(passwordEncoder.encode(userDTO.getPassword()));

@@ -1,20 +1,33 @@
 package Car.Auto.Mechanic.Entity;
 
+import java.security.acl.Owner;
+import java.util.Collection;
+
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+
+enum make{
+	
+	Toyota, Nissan, Ferrari, Lamborghini
+}
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "licence"))
 public class Vehicle {
-	
+
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
-	
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private long id;
+
 	private String make;
 	private String model;
 	private String year;
@@ -22,13 +35,36 @@ public class Vehicle {
 	private String engine;
 	private String status;
 	private String comments;
-	
+
+	@OneToOne(fetch = FetchType.EAGER)
+	private User owner;
+
+	@OneToMany
+	private Collection<Booking> booking;
+
 	public Vehicle() {
 		super();
-	
+
 	}
 
-	public int getId() {
+	
+	public User getUserId() {
+		return owner;
+	}
+
+	public void setUserId(User userId) {
+		this.owner = userId;
+	}
+
+	public Collection<Booking> getBooking() {
+		return booking;
+	}
+
+	public void setBooking(Collection<Booking> booking) {
+		this.booking = booking;
+	}
+
+	public long getId() {
 		return id;
 	}
 
@@ -92,14 +128,6 @@ public class Vehicle {
 		this.comments = comments;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 
 }
