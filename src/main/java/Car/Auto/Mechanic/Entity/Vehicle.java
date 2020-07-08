@@ -1,6 +1,6 @@
 package Car.Auto.Mechanic.Entity;
 
-import java.security.acl.Owner;
+
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -8,18 +8,12 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
-
-enum make{
-	
-	Toyota, Nissan, Ferrari, Lamborghini
-}
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "licence"))
 public class Vehicle {
@@ -47,13 +41,12 @@ public class Vehicle {
 
 	}
 
-	
-	public User getUserId() {
+	public User getUser() {
 		return owner;
 	}
 
-	public void setUserId(User userId) {
-		this.owner = userId;
+	public void setUser(User user) {
+		this.owner = user;
 	}
 
 	public Collection<Booking> getBooking() {
@@ -127,7 +120,5 @@ public class Vehicle {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	
-
 
 }

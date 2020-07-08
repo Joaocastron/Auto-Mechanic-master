@@ -1,8 +1,13 @@
 package Car.Auto.Mechanic.Controllers;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.authentication.AnonymousAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -27,11 +32,19 @@ public class VehicleRegisterController {
 
 		return new VehicleRegsDTO();
 	}
+	
+	@ModelAttribute("allVehicle")
+	public List<Vehicle> populateVehicles(){
+		return vehicleService.findByUser();
+	}
 
 	@GetMapping("/vehicleRegister")
 	public String register(Model model) {
 		return "vehicleRegister";
 	}
+	
+	
+
 
 	@PostMapping("/vehicleRegister")
 	public String vehicleRegister(@ModelAttribute("vehicle") @Valid VehicleRegsDTO vehicleDTO, BindingResult result) {
