@@ -19,6 +19,12 @@
 
                 <h1>Vehicle Registration</h1>
                 <form th:action="@{/vehicleRegister}" th:object="${vehicle}" method="POST">
+                  	<div class="form-group">
+                		<select th:field="*{licence}">
+						    <option th:each="i : ${#allVehicles}" th:value="${i}" th:text="${i}">
+						    </option>
+						</select>
+             		</div>
                     <div class="form-group" th:classappend="${#fields.hasErrors('make')} ? 'has-errors': ''">
                         <label for="make" class="control-label">Make</label>
                         <input id="make" type="text" class="form-control" th:field="*{make}" />

@@ -30,8 +30,11 @@ public class VehicleServiceImplementation implements VehicleService {
 	@Override
 	public List<Vehicle> findByUser() {
 		String name = Owner();
-		User user = UserService.findByName(name);
-		return vehicleRepository.findbyUser(user.getId());
+		if(name != null) {
+			User user = UserService.findByEmail(name);
+			return vehicleRepository.findbyUser(user.getId());
+		}
+		return null;
 	}
 	
 	public String Owner () {
@@ -48,8 +51,8 @@ public class VehicleServiceImplementation implements VehicleService {
 		
 		Vehicle vehicle = new Vehicle();
 		
-		String name = Owner();
-		User user = UserService.findByName(name);
+		String email = Owner();
+		User user = UserService.findByEmail(email);
 		vehicle.setUser(user);
 		vehicle.setMake(vehicleDTO.getMake());
 		vehicle.setModel(vehicleDTO.getModel());
