@@ -1,5 +1,8 @@
 package Car.Auto.Mechanic.Controllers;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import Car.Auto.Mechanic.DTO.BookingDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Services.BookingService;
+import Car.Auto.Mechanic.Services.SchedulerService;
 
 @Controller
 public class BookingController {
@@ -20,10 +24,19 @@ public class BookingController {
 	@Autowired
 	private BookingService bookingService;
 	
+	@Autowired
+	private SchedulerService schedulerService;
+	
 	@ModelAttribute("booking")
 	public BookingDTO bookingDTO() {
 		
 		return new BookingDTO();
+	}
+	
+	@ModelAttribute("availableDates")
+	public ArrayList<LocalDate> getAvailableDates(){
+		ArrayList<LocalDate> dates = schedulerService.getFreeSpot();
+		return dates;
 	}
 	    
     @GetMapping("/booking")
@@ -34,6 +47,7 @@ public class BookingController {
     @PostMapping("/booking")
     public String BookingRegister (@ModelAttribute ("booking")@Valid BookingDTO bookingDTO, BindingResult result) {
     	
+    	// Verify existing bookings
     	Booking existingBooking = bookingService.findbyVehicle(bookingDTO.getVehicle());
     	
     	if (existingBooking != null) {
@@ -44,6 +58,7 @@ public class BookingController {
     		return "booking";
     	}
     	
+    	// Save booking
     	bookingService.save(bookingDTO);
     	
     	return "redirect:/booking?success";

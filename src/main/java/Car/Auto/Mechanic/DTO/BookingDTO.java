@@ -1,61 +1,85 @@
 package Car.Auto.Mechanic.DTO;
 
-import java.util.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
+import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Entity.Vehicle;
+import Car.Auto.Mechanic.Models.BookingType;
+import Car.Auto.Mechanic.Models.Status;
 
 public class BookingDTO {
 
 	private Vehicle vehicle;
-	private String Type;
+	private User Customer;
+	private BookingType Type;
 	private String description;
 	private String comments;
-	private String status;
-	
+	private Status status;
+
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date date;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	private LocalDate date;
+
 	
-	
+	public User getCustomer() {
+		return Customer;
+	}
+
+	public void setCustomer(User customer) {
+		Customer = customer;
+	}
+
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
+
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	public String getType() {
+
+	public BookingType getType() {
 		return Type;
 	}
-	public void setType(String type) {
+
+	public void setType(BookingType type) {
 		Type = type;
 	}
+
 	public String getDescription() {
 		return description;
 	}
+
 	public void setDescription(String description) {
 		this.description = description;
 	}
+
 	public String getComments() {
 		return comments;
 	}
+
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-	public String getStatus() {
+
+	public Status getStatus() {
 		return status;
 	}
-	public void setStatus(String status) {
+
+	public void setStatus(Status status) {
 		this.status = status;
 	}
-	public Date getDate() {
+
+	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(Date date) {
+
+	public void setDate(LocalDate date) {
 		this.date = date;
 	}
-	
-	
-	
+
 }

@@ -9,6 +9,60 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-    <p th:text="'Hello, Booking!'" />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+
+                <div th:if="${param.success}">
+                    <div class="alert alert-info">Thank you for booking with us</div>
+                </div>
+
+                <h1>Booking</h1>
+                
+                <form th:action="@{/booking}" th:object="${booking}" method="POST">
+                
+                	<div class="form-group" >
+                  	 <label for="vehicle" class="control-label">Vehicle</label>
+                		<select th:field="*{vehicle}"class=" form-control">
+						    <option th:each="i : ${allVehicle}" th:value="${i.licence}" th:text="${ i.model,i.licence,}">
+						    </option>
+						</select>
+						</div>
+             		  <div class="form-group" th:classappend="${#fields.hasErrors('status')} ? 'has-errors': ''">
+                        <label for="status" class="control-label">Status</label>
+                       	<select th:field="*{status}" class=" form-control">
+						    <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
+						    </option>
+						</select>
+                    </div>
+             		<div class="form-group" th:classappend="${#fields.hasErrors('type')} ? 'has-errors': ''">
+                        <label for="type" class="control-label">Type</label>
+                       	<select th:field="*{type}" class=" form-control">
+						    <option th:each="i : ${T(Car.Auto.Mechanic.Models.BookingType).values()}" th:value="${i}" th:text="${i}">
+						    </option>
+						</select>
+                    </div>
+                  <div class="form-group" th:classappend="${#fields.hasErrors('description')} ? 'has-errors': ''">
+                        <label for="description" class="control-label">Description</label>
+                        <input id="description" class=" form-control" th:field="*{description}"/>
+                        <!-- <p class="error-message" th:each="error: ${#fields.error('description')}" th:text="${error}">Validation error</p> -->
+                    </div>
+                  	<div class="form-group">
+                		<select th:field="*{date}" class="form-control">
+						    <option th:each="i : ${availableDates}" th:value="${i}" th:text="${i}">
+						    </option>
+						</select>
+                     </div>
+                     <div class="form-froup">
+                        <button type="submit" class="btn btn-success">Booking</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
 </body>
 </html>

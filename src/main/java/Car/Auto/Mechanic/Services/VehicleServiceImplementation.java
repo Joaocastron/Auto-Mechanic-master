@@ -18,56 +18,51 @@ public class VehicleServiceImplementation implements VehicleService {
 
 	@Autowired
 	private VehicleRepository vehicleRepository;
-	
+
 	@Autowired
 	private UserService UserService;
-	
+
 	@Override
 	public Vehicle findByLincence(String licence) {
 		return vehicleRepository.findbyLicence(licence);
 	}
-	
+
 	@Override
 	public List<Vehicle> findByUser() {
 		String name = Owner();
-		if(name != null) {
+		if (name != null) {
 			User user = UserService.findByEmail(name);
 			return vehicleRepository.findbyUser(user.getId());
 		}
 		return null;
 	}
-	
-	public String Owner () {
-		
+
+	public String Owner() {
+
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
 		if (!(authentication instanceof AnonymousAuthenticationToken)) {
-		    String currentUserName = authentication.getName();
-		    return currentUserName;
+			String currentUserName = authentication.getName();
+			return currentUserName;
 		}
 		return null;
 	}
-	
-	public Vehicle save (VehicleRegsDTO vehicleDTO) {
-		
+
+	public Vehicle save(VehicleRegsDTO vehicleDTO) {
+
 		Vehicle vehicle = new Vehicle();
-		
+
 		String email = Owner();
 		User user = UserService.findByEmail(email);
 		vehicle.setUser(user);
 		vehicle.setMake(vehicleDTO.getMake());
 		vehicle.setModel(vehicleDTO.getModel());
-		vehicle.setLicence(vehicleDTO.getLicence());
-		vehicle.setEngine(vehicleDTO.getEngine());
 		vehicle.setYear(vehicleDTO.getYear());
+		vehicle.setEngine(vehicleDTO.getEngine());
+		vehicle.setLicence(vehicleDTO.getLicence());
 		vehicle.setComments(vehicleDTO.getComments());
-		
+
 		return vehicleRepository.save(vehicle);
-		
+
 	}
-
-
-
-
-	
 
 }

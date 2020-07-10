@@ -2,21 +2,24 @@ package Car.Auto.Mechanic.DTO;
 
 import javax.validation.constraints.NotEmpty;
 
+import Car.Auto.Mechanic.Models.Engine;
+import Car.Auto.Mechanic.Models.Make;
+import Car.Auto.Mechanic.Models.Model;
+
 public class VehicleRegsDTO {
 
 	@NotEmpty
-	private String make;
+	private Make make;
 	@NotEmpty
-	private String model;
+	private Model model;
 	@NotEmpty
 	private String year;
 	@NotEmpty
 	private String licence;
+
 	@NotEmpty
-	private String engine;
-	
-	private String status;
-	
+	private Engine engine;
+
 	private String comments;
 
 	public VehicleRegsDTO() {
@@ -24,19 +27,19 @@ public class VehicleRegsDTO {
 		// TODO Auto-generated constructor stub
 	}
 
-	public String getMake() {
+	public Make getMake() {
 		return make;
 	}
 
-	public void setMake(String make) {
+	public void setMake(Make make) {
 		this.make = make;
 	}
 
-	public String getModel() {
+	public Model getModel() {
 		return model;
 	}
 
-	public void setModel(String model) {
+	public void setModel(Model model) {
 		this.model = model;
 	}
 
@@ -56,20 +59,12 @@ public class VehicleRegsDTO {
 		this.licence = licence;
 	}
 
-	public String getEngine() {
+	public Engine getEngine() {
 		return engine;
 	}
 
-	public void setEngine(String engine) {
+	public void setEngine(Engine engine) {
 		this.engine = engine;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public String getComments() {

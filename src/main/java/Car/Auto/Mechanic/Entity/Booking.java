@@ -1,5 +1,7 @@
 package Car.Auto.Mechanic.Entity;
 
+import java.time.LocalDate;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -10,6 +12,9 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
+
+import Car.Auto.Mechanic.Models.BookingType;
+import Car.Auto.Mechanic.Models.Status;
 
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
@@ -22,23 +27,37 @@ public class Booking {
 	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
-
-	private String type;
+	
+	@OneToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User customer;
+	
+	private BookingType type;
 
 	private String description;
 
 	private String comments;
 
-	private String status;
+	private Status status;
 
 	private double price;
 
-	private java.util.Date timeStamp;
+	private LocalDate timeStamp;
 
 	public Booking() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
+
+	
+	public User getCustomer() {
+		return customer;
+	}
+
+
+	public void setCustomer(User customer) {
+		this.customer = customer;
+	}
+
 
 	public long getId() {
 		return id;
@@ -48,19 +67,15 @@ public class Booking {
 		this.id = id;
 	}
 
-///	public Collection<Vehicle> getVehicle() {
-	// return vehicle;
-//	}
-
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
 
-	public String getType() {
+	public BookingType getType() {
 		return type;
 	}
 
-	public void setType(String type) {
+	public void setType(BookingType type) {
 		this.type = type;
 	}
 
@@ -80,11 +95,11 @@ public class Booking {
 		this.comments = comments;
 	}
 
-	public String getStatus() {
+	public Status getStatus() {
 		return status;
 	}
 
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 
@@ -96,11 +111,11 @@ public class Booking {
 		this.price = price;
 	}
 
-	public java.util.Date getTimeStamp() {
+	public LocalDate getTimeStamp() {
 		return timeStamp;
 	}
 
-	public void setTimeStamp(java.util.Date timeStamp) {
+	public void setTimeStamp(LocalDate timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 

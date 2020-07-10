@@ -6,7 +6,8 @@ import Car.Auto.Mechanic.DTO.UserRegistrationDTO;
 import Car.Auto.Mechanic.Entity.User;
 
 public interface UserService extends UserDetailsService {
-    User findByEmail(String email);
+    
+	User findByEmail(String email);
     
     User findByName(String name);
 

@@ -1,6 +1,5 @@
 package Car.Auto.Mechanic.Entity;
 
-
 import java.util.Collection;
 
 import javax.persistence.Entity;
@@ -14,6 +13,10 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import Car.Auto.Mechanic.Models.Engine;
+import Car.Auto.Mechanic.Models.Make;
+import Car.Auto.Mechanic.Models.Model;
+
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "licence"))
 public class Vehicle {
@@ -22,12 +25,11 @@ public class Vehicle {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private String make;
-	private String model;
+	private Make make;
+	private Model model;
 	private String year;
 	private String licence;
-	private String engine;
-	private String status;
+	private Engine engine;
 	private String comments;
 
 	@OneToOne(fetch = FetchType.EAGER)
@@ -65,19 +67,19 @@ public class Vehicle {
 		this.id = id;
 	}
 
-	public String getMake() {
+	public Make getMake() {
 		return make;
 	}
 
-	public void setMake(String make) {
+	public void setMake(Make make) {
 		this.make = make;
 	}
 
-	public String getModel() {
+	public Model getModel() {
 		return model;
 	}
 
-	public void setModel(String model) {
+	public void setModel(Model model) {
 		this.model = model;
 	}
 
@@ -97,20 +99,12 @@ public class Vehicle {
 		this.licence = licence;
 	}
 
-	public String getEngine() {
+	public Engine getEngine() {
 		return engine;
 	}
 
-	public void setEngine(String engine) {
+	public void setEngine(Engine engine) {
 		this.engine = engine;
-	}
-
-	public String getStatus() {
-		return status;
-	}
-
-	public void setStatus(String status) {
-		this.status = status;
 	}
 
 	public String getComments() {

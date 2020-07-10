@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import Car.Auto.Mechanic.DTO.UserRegistrationDTO;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Services.UserService;
-import Car.Auto.Mechanic.Services.VehicleService;
+
 
 @Controller
 public class RegisterController {
