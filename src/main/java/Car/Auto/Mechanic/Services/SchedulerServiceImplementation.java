@@ -20,7 +20,7 @@ public class SchedulerServiceImplementation implements SchedulerService {
             count--;
         }
 
-        // Here we remove the dates with appointments
+        // Here remove the dates with appointments
         
 
         return datesAvailable;

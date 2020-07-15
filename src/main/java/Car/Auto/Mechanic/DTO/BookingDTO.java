@@ -1,12 +1,7 @@
 package Car.Auto.Mechanic.DTO;
 
 import java.time.LocalDate;
-
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
-
 import org.springframework.format.annotation.DateTimeFormat;
-
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Entity.Vehicle;
 import Car.Auto.Mechanic.Models.BookingType;
@@ -21,11 +16,16 @@ public class BookingDTO {
 	private String comments;
 	private Status status;
 
-	@Temporal(TemporalType.TIMESTAMP)
+	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
 	
+	public BookingDTO() {
+		super();
+		
+	}
+
 	public User getCustomer() {
 		return Customer;
 	}

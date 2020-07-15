@@ -1,18 +1,14 @@
 package Car.Auto.Mechanic.Entity;
 
 import java.time.LocalDate;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 import Car.Auto.Mechanic.Models.BookingType;
 import Car.Auto.Mechanic.Models.Status;
 
@@ -25,13 +21,11 @@ public class Booking {
 	private long id;
 
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "vehicle_id")
 	private Vehicle vehicle;
-	
+
 	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "user_id")
 	private User customer;
-	
+
 	private BookingType type;
 
 	private String description;
@@ -48,16 +42,13 @@ public class Booking {
 		super();
 	}
 
-	
 	public User getCustomer() {
 		return customer;
 	}
 
-
 	public void setCustomer(User customer) {
 		this.customer = customer;
 	}
-
 
 	public long getId() {
 		return id;

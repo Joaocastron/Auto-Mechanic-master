@@ -93,4 +93,11 @@ public class User {
 		Collection<Role> roles = getRoles();
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", phone=" + phone + "]";
+	}
+	
+	
 }

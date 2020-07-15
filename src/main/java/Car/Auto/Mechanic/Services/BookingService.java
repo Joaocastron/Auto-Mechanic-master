@@ -14,7 +14,7 @@ public interface BookingService {
 	
 	List<Vehicle> findByUser();
 	
-	Booking save (BookingDTO bookingDTO);
+	Booking save(BookingDTO bookingDTO);
 	
 	
 }

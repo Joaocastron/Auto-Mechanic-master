@@ -32,13 +32,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 "/css/**",
                 "/img/**",
                 "/webjars/**").permitAll()
-                //.antMatchers("/booking").hasRole("CUSTOMER")
+               //.antMatchers("/booking").hasRole("CUSTOMER")
                 .antMatchers("/allocate").hasRole("ADMIN")
                 .antMatchers("/login*").permitAll()
                 .anyRequest().authenticated()
             .and()
             .formLogin()
-               // .loginPage("/login")
+                .loginPage("/login")
                 .permitAll()
             .and()
                 .logout()

@@ -2,6 +2,7 @@ package Car.Auto.Mechanic.DTO;
 
 import javax.validation.constraints.NotEmpty;
 
+import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Models.Engine;
 import Car.Auto.Mechanic.Models.Make;
 import Car.Auto.Mechanic.Models.Model;
@@ -21,11 +22,24 @@ public class VehicleRegsDTO {
 	private Engine engine;
 
 	private String comments;
+	
+	private User owner;
 
 	public VehicleRegsDTO() {
 		super();
-		// TODO Auto-generated constructor stub
+		
 	}
+
+	
+	public User getOwner() {
+		return owner;
+	}
+
+
+	public void setOwner(User owner) {
+		this.owner = owner;
+	}
+
 
 	public Make getMake() {
 		return make;

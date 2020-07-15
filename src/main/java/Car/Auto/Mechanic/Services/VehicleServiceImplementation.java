@@ -51,8 +51,9 @@ public class VehicleServiceImplementation implements VehicleService {
 
 		Vehicle vehicle = new Vehicle();
 
-		String email = Owner();
-		User user = UserService.findByEmail(email);
+		String name = Owner();
+		User user = UserService.findByEmail(name);
+		
 		vehicle.setUser(user);
 		vehicle.setMake(vehicleDTO.getMake());
 		vehicle.setModel(vehicleDTO.getModel());
@@ -64,5 +65,9 @@ public class VehicleServiceImplementation implements VehicleService {
 		return vehicleRepository.save(vehicle);
 
 	}
+
+	
+
+
 
 }

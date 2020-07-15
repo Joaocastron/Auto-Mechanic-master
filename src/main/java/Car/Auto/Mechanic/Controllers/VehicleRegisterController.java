@@ -27,10 +27,10 @@ public class VehicleRegisterController {
 		return new VehicleRegsDTO();
 	}
 	
-	@ModelAttribute("allVehicle")
+	/*@ModelAttribute("allVehicle")
 	public List<Vehicle> populateVehicles(){
 		return vehicleService.findByUser();
-	}
+	}*/
 
 	@GetMapping("/vehicleRegister")
 	public String register(Model model) {
@@ -38,8 +38,6 @@ public class VehicleRegisterController {
 	}
 	
 	
-
-
 	@PostMapping("/vehicleRegister")
 	public String vehicleRegister(@ModelAttribute("vehicle") @Valid VehicleRegsDTO vehicleDTO, BindingResult result) {
 
