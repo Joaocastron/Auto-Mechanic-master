@@ -58,9 +58,9 @@ public class BookingController {
 	public String BookingRegister(@ModelAttribute("booking") @Valid BookingDTO bookingDTO, BindingResult result) {
 
 		// Verify existing bookings
-		Booking existingBooking = bookingService.findbyVehicle(bookingDTO.getVehicle());
+		boolean isBooked = bookingService.isBooked(bookingDTO.getVehicleLicence());
 
-		if (existingBooking != null) {
+		if (isBooked ) {
 
 			result.rejectValue("Vehicle", null, "There is a booking already made");
 		}

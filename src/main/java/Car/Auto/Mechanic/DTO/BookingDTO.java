@@ -16,14 +16,14 @@ public class BookingDTO {
 	private String comments;
 	private Status status;
 
-	
+	private String vehicleLicence;
+
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	private LocalDate date;
 
-	
 	public BookingDTO() {
 		super();
-		
+
 	}
 
 	public User getCustomer() {
@@ -81,5 +81,14 @@ public class BookingDTO {
 	public void setDate(LocalDate date) {
 		this.date = date;
 	}
+
+	public String getVehicleLicence() {
+		return vehicleLicence;
+	}
+
+	public void setVehicleLicence(String vehicleLicence) {
+		this.vehicleLicence = vehicleLicence;
+	}
+	
 
 }

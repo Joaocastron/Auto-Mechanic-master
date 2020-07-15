@@ -27,7 +27,7 @@ public class VehicleServiceImplementation implements VehicleService {
 		return vehicleRepository.findbyLicence(licence);
 	}
 
-	@Override
+	/*@Override
 	public List<Vehicle> findByUser() {
 		String name = Owner();
 		if (name != null) {
@@ -35,7 +35,7 @@ public class VehicleServiceImplementation implements VehicleService {
 			return vehicleRepository.findbyUser(user.getId());
 		}
 		return null;
-	}
+	}*/
 
 	public String Owner() {
 

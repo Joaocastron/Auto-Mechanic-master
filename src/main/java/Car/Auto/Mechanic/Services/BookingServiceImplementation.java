@@ -26,9 +26,9 @@ public class BookingServiceImplementation implements BookingService {
 	private UserService userService;
 	
 	@Override
-	public Booking findbyVehicle(Vehicle vehicle) {
+	public Booking findbyVehicle(long vehicle_id) {
 		
-		return bookingRepository.findByVehicle(vehicle);
+		return bookingRepository.findByVehicle(vehicle_id);
 	}
 
 	@Override
@@ -38,10 +38,17 @@ public class BookingServiceImplementation implements BookingService {
 		if (name != null){
 			
 			User user = userService.findByEmail(name);
-			return bookingRepository.findbyUser(user.getId());  
+			return vehicleRepository.findbyUser(user.getId());  
 		}
 		return null;
 	}
+	
+	@Override
+	public boolean isBooked(String vehicleLicence) {
+		
+		return bookingRepository.isBooked(vehicleLicence);
+	}
+
 
 	public String Owner() {
 
@@ -71,6 +78,10 @@ public class BookingServiceImplementation implements BookingService {
 		
 		return bookingRepository.save(booking);
 	}
+
+	
+
+	
 
 	
 

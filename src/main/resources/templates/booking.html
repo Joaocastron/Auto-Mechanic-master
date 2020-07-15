@@ -22,8 +22,8 @@
                 <form th:action="@{/booking}" th:object="${booking}" method="POST">
                 
                 	<div class="form-group" >
-                  	 <label for="vehicle" class="control-label">Vehicle</label>
-                		<select th:field="*{vehicle}"class=" form-control">
+                  	 <label for="vehicleLicence" class="control-label">Vehicle</label>
+                		<select th:field="*{vehicleLicence}"class=" form-control">
 						    <option th:each="i : ${allVehicle}" th:value="${i.licence}" th:text="${i.licence}">
 						    </option>
 						</select>

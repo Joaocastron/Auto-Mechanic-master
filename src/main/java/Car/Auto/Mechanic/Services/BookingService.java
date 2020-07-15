@@ -10,9 +10,11 @@ import Car.Auto.Mechanic.Entity.Vehicle;
 
 public interface BookingService {
 
-	Booking  findbyVehicle (Vehicle vehicle);
+	Booking  findbyVehicle (long vehicle_id);
 	
 	List<Vehicle> findByUser();
+	
+	boolean isBooked (String vehicleLicence);
 	
 	Booking save(BookingDTO bookingDTO);
 	

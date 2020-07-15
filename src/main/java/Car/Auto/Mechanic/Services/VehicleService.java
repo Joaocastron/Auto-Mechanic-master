@@ -9,8 +9,6 @@ public interface VehicleService {
 
 	Vehicle findByLincence(String licence);
 
-	List<Vehicle> findByUser();
-
 	Vehicle save(VehicleRegsDTO vehicleRegsDTO);
 
 }
