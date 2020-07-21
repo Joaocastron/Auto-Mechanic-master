@@ -7,7 +7,6 @@ import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-
 import Car.Auto.Mechanic.DTO.VehicleRegsDTO;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Entity.Vehicle;
@@ -27,7 +26,7 @@ public class VehicleServiceImplementation implements VehicleService {
 		return vehicleRepository.findbyLicence(licence);
 	}
 
-	/*@Override
+	@Override
 	public List<Vehicle> findByUser() {
 		String name = Owner();
 		if (name != null) {
@@ -35,7 +34,7 @@ public class VehicleServiceImplementation implements VehicleService {
 			return vehicleRepository.findbyUser(user.getId());
 		}
 		return null;
-	}*/
+	}
 
 	public String Owner() {
 
@@ -53,7 +52,7 @@ public class VehicleServiceImplementation implements VehicleService {
 
 		String name = Owner();
 		User user = UserService.findByEmail(name);
-		
+
 		vehicle.setUser(user);
 		vehicle.setMake(vehicleDTO.getMake());
 		vehicle.setModel(vehicleDTO.getModel());
@@ -65,9 +64,5 @@ public class VehicleServiceImplementation implements VehicleService {
 		return vehicleRepository.save(vehicle);
 
 	}
-
-	
-
-
 
 }

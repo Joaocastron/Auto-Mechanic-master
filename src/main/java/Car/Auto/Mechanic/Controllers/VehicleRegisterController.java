@@ -1,9 +1,7 @@
+
 package Car.Auto.Mechanic.Controllers;
 
-import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -26,18 +24,17 @@ public class VehicleRegisterController {
 
 		return new VehicleRegsDTO();
 	}
-	
-	/*@ModelAttribute("allVehicle")
-	public List<Vehicle> populateVehicles(){
-		return vehicleService.findByUser();
-	}*/
+
+	/*
+	 * @ModelAttribute("allVehicle") public List<Vehicle> populateVehicles(){ return
+	 * vehicleService.findByUser(); }
+	 */
 
 	@GetMapping("/vehicleRegister")
 	public String register(Model model) {
 		return "vehicleRegister";
 	}
-	
-	
+
 	@PostMapping("/vehicleRegister")
 	public String vehicleRegister(@ModelAttribute("vehicle") @Valid VehicleRegsDTO vehicleDTO, BindingResult result) {
 
@@ -53,7 +50,7 @@ public class VehicleRegisterController {
 
 		vehicleService.save(vehicleDTO);
 
-		return "redirect:/register?success";
+		return "redirect:/booking?success";
 	}
 
 }

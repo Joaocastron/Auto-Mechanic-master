@@ -3,9 +3,7 @@ package Car.Auto.Mechanic.Controllers;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,13 +11,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-
 import Car.Auto.Mechanic.DTO.BookingDTO;
-import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.Vehicle;
 import Car.Auto.Mechanic.Services.BookingService;
 import Car.Auto.Mechanic.Services.SchedulerService;
-import Car.Auto.Mechanic.Services.VehicleService;
 
 @Controller
 public class BookingController {
@@ -29,8 +24,6 @@ public class BookingController {
 
 	@Autowired
 	private SchedulerService schedulerService;
-	@Autowired
-	private VehicleService vehicleService;
 
 	@ModelAttribute("booking")
 	public BookingDTO bookingDTO() {
@@ -58,15 +51,14 @@ public class BookingController {
 	public String BookingRegister(@ModelAttribute("booking") @Valid BookingDTO bookingDTO, BindingResult result) {
 
 		// Verify existing bookings
-		boolean isBooked = bookingService.isBooked(bookingDTO.getVehicleLicence());
-
-		if (isBooked ) {
-
-			result.rejectValue("Vehicle", null, "There is a booking already made");
-		}
-		if (result.hasErrors()) {
-			return "booking";
-		}
+		/*
+		 * boolean isBooked = bookingService.isBooked(bookingDTO.getVehicleLicence());
+		 * 
+		 * if (isBooked ) {
+		 * 
+		 * result.rejectValue("Vehicle", null, "There is a booking already made"); } if
+		 * (result.hasErrors()) { return "booking"; }
+		 */
 
 		// Save booking
 		bookingService.save(bookingDTO);

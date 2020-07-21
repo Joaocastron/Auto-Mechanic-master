@@ -15,8 +15,8 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 	@Query(value="SELECT * FROM vehicle where owner_id =:owner_id", nativeQuery = true)
 	Vehicle findByUser (long owner_id);
 	
-	@Query(value="SELECT CASE WHEN COUNT(id) > 0 THEN true ELSE false END FROM booking WHERE status = 0 AND vehicle_id = (SELECT id FROM vehicle WHERE licence =:vehicleLicence)", nativeQuery = true)
-	boolean isBooked (String vehicleLicence);
+	@Query(value="SELECT COUNT(id) FROM booking WHERE status = 0 AND vehicle_id = (SELECT id FROM vehicle WHERE licence =:vehicleLicence)", nativeQuery = true)
+	int isBooked (String vehicleLicence);
 
 
 }
