@@ -8,14 +8,19 @@ import java.util.ArrayList;
 public class SchedulerServiceImplementation implements SchedulerService {
 
     public ArrayList<LocalDate> getFreeSpot() {
-        LocalDate date = LocalDate.now();
+      
+    	LocalDate date = LocalDate.now();
+        
         ArrayList<LocalDate> datesAvailable = new ArrayList<LocalDate>();
 
-        int count = 7;
+        int count = 15;
+        
         while (count > 0) {
+        	
             if (date.getDayOfWeek() != DayOfWeek.SUNDAY) {
                 datesAvailable.add(date);
             }
+            
             date = date.plusDays(1);
             count--;
         }

@@ -10,7 +10,6 @@ import Car.Auto.Mechanic.DTO.BookingDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Entity.Vehicle;
-import Car.Auto.Mechanic.Models.BookingType;
 import Car.Auto.Mechanic.Repository.BookingRepository;
 import Car.Auto.Mechanic.Repository.VehicleRepository;
 
@@ -67,14 +66,18 @@ public class BookingServiceImplementation implements BookingService {
 
 		String name = Owner();
 		User user = userService.findByEmail(name);
+		
+		String licence = bookingDTO.getVehicleLicence();
+		Vehicle vehicle = vehicleRepository.findbyLicence(licence);
 
 		booking.setCustomer(user);
-		booking.setVehicle(bookingDTO.getVehicle());
+		booking.setVehicle(vehicle);
 		booking.setStatus(booking.getStatus());
 		booking.setType(bookingDTO.getType());
 		booking.setDescription(bookingDTO.getDescription());
 		booking.setTimeStamp(bookingDTO.getDate());
 
+		
 		return bookingRepository.save(booking);
 	}
 

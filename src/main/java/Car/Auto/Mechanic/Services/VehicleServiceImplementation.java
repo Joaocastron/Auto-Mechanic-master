@@ -1,7 +1,5 @@
 package Car.Auto.Mechanic.Services;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -24,16 +22,6 @@ public class VehicleServiceImplementation implements VehicleService {
 	@Override
 	public Vehicle findByLincence(String licence) {
 		return vehicleRepository.findbyLicence(licence);
-	}
-
-	@Override
-	public List<Vehicle> findByUser() {
-		String name = Owner();
-		if (name != null) {
-			User user = UserService.findByEmail(name);
-			return vehicleRepository.findbyUser(user.getId());
-		}
-		return null;
 	}
 
 	public String Owner() {

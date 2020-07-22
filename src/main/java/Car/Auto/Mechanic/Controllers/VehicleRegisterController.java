@@ -25,11 +25,7 @@ public class VehicleRegisterController {
 		return new VehicleRegsDTO();
 	}
 
-	/*
-	 * @ModelAttribute("allVehicle") public List<Vehicle> populateVehicles(){ return
-	 * vehicleService.findByUser(); }
-	 */
-
+	
 	@GetMapping("/vehicleRegister")
 	public String register(Model model) {
 		return "vehicleRegister";

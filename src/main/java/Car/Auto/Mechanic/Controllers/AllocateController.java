@@ -10,4 +10,11 @@ public class AllocateController {
     public String allocate(){
         return "allocate";
     }
+    
+    @GetMapping("/home")
+    public String index(){
+        return "home";
+    }
+    
+    
 }

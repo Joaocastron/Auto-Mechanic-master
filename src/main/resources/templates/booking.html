@@ -25,7 +25,7 @@
                 
                 	<div class="form-group" >
                   	 <label for="vehicle" class="control-label">Vehicle</label>
-                		<select th:field="*{vehicle}"class=" form-control">
+                		<select th:field="*{vehicleLicence}"class=" form-control">
 						    <option th:each="i : ${allVehicle}" th:value="${i.licence}" th:text="${i.licence}">
 						    </option>
 						</select>
