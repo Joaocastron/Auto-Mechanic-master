@@ -15,6 +15,8 @@ public class AllocateController {
     public String index(){
         return "home";
     }
+
+    
     
     
 }

@@ -1,5 +1,6 @@
 package Car.Auto.Mechanic.Services;
 
+import java.time.LocalDate;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
@@ -79,6 +80,11 @@ public class BookingServiceImplementation implements BookingService {
 
 		
 		return bookingRepository.save(booking);
+	}
+
+	@Override
+	public List<Booking> getByPeriod(LocalDate startDate, LocalDate endDate) {
+		return bookingRepository.getByPeriod(startDate, endDate);
 	}
 
 }
