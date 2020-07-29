@@ -22,9 +22,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>src/main/resources/templates/img/logo.png</name>
+			<name>src/main/resources/static/img/logo.png</name>
 			<type>1</type>
-			<location>C:/Users/Owner/Desktop/logo.png</location>
+			<location>C:/Users/Owner/Desktop/Auto Machenic/Auto-Mechanic-master/src/main/resources/static/img/logo.png</location>
 		</link>
 	</linkedResources>
 </projectDescription>

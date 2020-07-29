@@ -19,10 +19,10 @@
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/booking}">Booking</a>
+                     <a class="nav-link" href="#" th:href="@{/login}">Login</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/login}">Login</a>
+                     <a class="nav-link" href="#" th:href="@{/services}">Services</a>
                   </li>
                   <li class="nav-item">
                      <a class="nav-link" href="#">Contact</a>
@@ -38,8 +38,10 @@
       <div class="container">
          <div class="row">
             <div class="col-md-6 ">
-                               
-             <img alt="no data" th:src="@{/logo.png}">
+             <br>
+            <div>
+             <img th:src="@{/img/logo.png}" src="/Auto-Mechanic-master/src/main/resources/static/img/logo.png" class="img-responsive" alt="Responsive image"/>
+			</div>
                
             </div>
             <div class="col-md-6">
@@ -47,11 +49,17 @@
                <br>
                <h1 class=" text-center">Welcome</h1>
                <p class="align-middle">Since our opening, we have become master of our commitiment to quality products, exceptional services
-                  and incompaable customer care keep our community coming back again and again. 
+                  and incompable customer care keep our community coming back again and again. 
+                  <hr>
+                  we developed an exclusive booking system 
                </p>
             </div>
          </div>
       </div>
       </div>
-   </body>
+  <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
 </html>

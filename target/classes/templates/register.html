@@ -9,37 +9,40 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-    <div class="container">
-      
-        <div class="collapse navbar-collapse" id="navbarResponsive">
-            <ul class="navbar-nav mr -auto">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">Home
-                        <span class="sr-only">(current)</span>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#" th:href="@{/login}">Login</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Contact</a>
-                </li>
-            </ul>
-        </div>
-          <a class="navbar-brand">Phone +353 0149 - xxx Social Midias</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-           <span class="navbar-toggler-icon"></span>
-        </button>
-    </div>
-   </nav>
-   <br>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+         <div class="container">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav mr -auto">
+                  <li class="nav-item active">
+                     <a class="nav-link" href="#" th:href="@{/home}">Home
+                     <span class="sr-only">(current)</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#" th:href="@{/login}">login</a>
+                  </li>
+                  <li class="nav-item">
+					 <a class="nav-link" href="#" th:href="@{/services}">Services</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">About Us</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">About Us</a>
+                  </li>
+               </ul>
+            </div>
+            <a class="navbar-brand">Phone +353 0149 - xxx Social Midias</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+         </div>
+      </nav>
+      <br>
     <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
+            <div class="overflow-auto">
 
                 <div th:if="${param.success}">
                     <div class="alert alert-info">Thank you for register with us</div>
@@ -52,17 +55,17 @@
                     <div class="form-group" th:classappend="${#fields.hasErrors('name')} ? 'has-errors': ''">
                         <label for="name" class="control-label">Name</label>
                         <input id="name" type="text" class="form-control" th:field="*{name}" />
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('name')}" th:text="${error}">Validation error</p> -->
+                        <p class="error-message" th:each="error: ${#fields.errors('name')}" th:text="${error}">Validation error</p>
                     </div>
                     <div class="form-group" th:classappend="${#fields.hasErrors('surname')} ? 'has-errors': ''">
                         <label for="surname" class="control-label">Surname</label>
                         <input id="surname" type="text" class="form-control" th:field="*{surname}" />
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('surname')}" th:text="${error}">Validation error</p> -->
+                        <p class="error-message" th:each="error: ${#fields.errors('surname')}" th:text="${error}">Validation error</p>
                     </div>
                      <div class="form-group" th:classappend="${#fields.hasErrors('phone')} ? 'has-errors': ''">
                         <label for="phone" class="control-label">Phone Number</label>
                         <input id="phone" type="text" class="form-control" th:field="*{phone}" />
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('phone')}" th:text="${error}">Validation error</p> -->
+                        <p class="error-message" th:each="error: ${#fields.errors('phone')}" th:text="${error}">Validation error</p>
                     </div>
                     
                     <div class="form-group" th:classappend="${#fields.hasErrors('email')} ? 'has-errors': ''">
@@ -73,7 +76,7 @@
                     <div class="form-group" th:classappend="${#fields.hasErrors('password')} ? 'has-errors': ''">
                         <label for="password" class="control-label">Password</label>
                         <input id="password" type="password" class=" form-control" th:field="*{password}"/>
-                        <!-- <p class="error-message" th:each="error: ${#fields.error('password')}" th:text="${error}">Validation error</p> -->
+                        <p class="error-message" th:each="error: ${#fields.errors('password')}" th:text="${error}">Validation error</p> 
                     </div>
                     <div class="form-froup">
                         <button type="submit" class="btn btn-success">Register</button>

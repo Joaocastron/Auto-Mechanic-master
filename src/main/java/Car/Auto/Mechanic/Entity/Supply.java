@@ -1,9 +1,12 @@
 package Car.Auto.Mechanic.Entity;
 
+import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 
 @Entity
 public class Supply {
@@ -15,6 +18,9 @@ public class Supply {
 	private String SupplyName;
 
 	private double price;
+	
+	@ManyToMany(mappedBy = "supplies")
+	private Set<Invoice> invoices;
 
 	public Supply() {
 		super();

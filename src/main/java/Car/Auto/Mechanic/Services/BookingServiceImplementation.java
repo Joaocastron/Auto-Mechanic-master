@@ -11,6 +11,7 @@ import Car.Auto.Mechanic.DTO.BookingDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Entity.Vehicle;
+import Car.Auto.Mechanic.Models.Status;
 import Car.Auto.Mechanic.Repository.BookingRepository;
 import Car.Auto.Mechanic.Repository.VehicleRepository;
 
@@ -67,24 +68,35 @@ public class BookingServiceImplementation implements BookingService {
 
 		String name = Owner();
 		User user = userService.findByEmail(name);
-		
+
 		String licence = bookingDTO.getVehicleLicence();
 		Vehicle vehicle = vehicleRepository.findbyLicence(licence);
 
 		booking.setCustomer(user);
 		booking.setVehicle(vehicle);
-		booking.setStatus(booking.getStatus());
+		booking.setStatus(Status.BOOKED);
 		booking.setType(bookingDTO.getType());
 		booking.setDescription(bookingDTO.getDescription());
 		booking.setTimeStamp(bookingDTO.getDate());
 
-		
 		return bookingRepository.save(booking);
 	}
 
 	@Override
 	public List<Booking> getByPeriod(LocalDate startDate, LocalDate endDate) {
 		return bookingRepository.getByPeriod(startDate, endDate);
+	}
+
+	@Override
+	public List<Booking> getByStatus(Status status) {
+		
+		return bookingRepository.getByStatus(status.ordinal());
+	}
+
+	@Override
+	public List<Booking> findByUser(long userId) {
+		
+		return bookingRepository.findByUser(userId);
 	}
 
 }

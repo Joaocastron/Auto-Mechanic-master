@@ -46,7 +46,7 @@ public class VehicleRegisterController {
 
 		vehicleService.save(vehicleDTO);
 
-		return "redirect:/booking?success";
+		return "redirect:/userPage?success";
 	}
 
 }

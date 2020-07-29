@@ -17,7 +17,7 @@ public class VehicleServiceImplementation implements VehicleService {
 	private VehicleRepository vehicleRepository;
 
 	@Autowired
-	private UserService UserService;
+	private UserService userService;
 
 	@Override
 	public Vehicle findByLincence(String licence) {
@@ -39,7 +39,7 @@ public class VehicleServiceImplementation implements VehicleService {
 		Vehicle vehicle = new Vehicle();
 
 		String name = Owner();
-		User user = UserService.findByEmail(name);
+		User user = userService.findByEmail(name);
 
 		vehicle.setUser(user);
 		vehicle.setMake(vehicleDTO.getMake());

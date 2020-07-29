@@ -1,5 +1,5 @@
 package Car.Auto.Mechanic.Services;
 
-public class InvoiceImplemantation {
+public class InvoiceImplemantation implements InvoceService {
 
 }

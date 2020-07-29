@@ -1,13 +1,15 @@
 package Car.Auto.Mechanic.Entity;
 
-import java.util.ArrayList;
-import java.util.List;
-
+import java.util.Set;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToOne;
 
 @Entity
 public class Invoice {
@@ -16,31 +18,17 @@ public class Invoice {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
-	private long customerId;
+	@OneToOne(fetch = FetchType.EAGER)
+	private Booking booking;
 
-	private String customerName;
-
-	private String vehicleModel;
-
-	private String vehicleLicence;
-
-	private long bookingId;
-
-	private String bookingDescription;
-
-	private String bookingComments;
-
-	private double bookingPrice;
-
-	private ArrayList<String> suppliesName;
-
-	private ArrayList<Double> suppliesPrice;
-
-	private double total;
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "invoices_supplies", joinColumns = @JoinColumn(name = "invoice_id"), inverseJoinColumns = @JoinColumn(name = "supply_id"))
+	private Set<Supply> supplies;
+	
+	
 
 	public Invoice() {
 		super();
-
 	}
 
 	public long getId() {
@@ -51,96 +39,22 @@ public class Invoice {
 		this.id = id;
 	}
 
-	public long getCustomerId() {
-		return customerId;
+	public Booking getBooking() {
+		return booking;
 	}
 
-	public void setCustomerId(long customerId) {
-		this.customerId = customerId;
+	public void setBooking(Booking booking) {
+		this.booking = booking;
 	}
 
-	public String getCustomerName() {
-		return customerName;
+	public Set<Supply> getSupplies() {
+		return supplies;
 	}
 
-	public void setCustomerName(String customerName) {
-		this.customerName = customerName;
+	public void setSupplies(Set<Supply> supplies) {
+		this.supplies = supplies;
 	}
-
-	public String getVehicleModel() {
-		return vehicleModel;
-	}
-
-	public void setVehicleModel(String vehicleModel) {
-		this.vehicleModel = vehicleModel;
-	}
-
-	public String getVehicleLicence() {
-		return vehicleLicence;
-	}
-
-	public void setVehicleLicence(String vehicleLicence) {
-		this.vehicleLicence = vehicleLicence;
-	}
-
-	public long getBookingId() {
-		return bookingId;
-	}
-
-	public void setBookingId(long bookingId) {
-		this.bookingId = bookingId;
-	}
-
-	public String getBookingDescription() {
-		return bookingDescription;
-	}
-
-	public void setBookingDescription(String bookingDescription) {
-		this.bookingDescription = bookingDescription;
-	}
-
-	public String getBookingComments() {
-		return bookingComments;
-	}
-
-	public void setBookingComments(String bookingComments) {
-		this.bookingComments = bookingComments;
-	}
-
-	public double getBookingPrice() {
-		return bookingPrice;
-	}
-
-	public void setBookingPrice(double bookingPrice) {
-		this.bookingPrice = bookingPrice;
-	}
-
-	public List<String> getSupplies() {
-		return getSupplies();
-	}
-
-	public ArrayList<String> getSuppliesName() {
-		return suppliesName;
-	}
-
-	public void setSuppliesName(ArrayList<String> suppliesName) {
-		this.suppliesName = suppliesName;
-	}
-
-	public ArrayList<Double> getSuppliesPrice() {
-		return suppliesPrice;
-	}
-
-	public void setSuppliesPrice(ArrayList<Double> suppliesPrice) {
-		this.suppliesPrice = suppliesPrice;
-	}
-
-	public double getTotal() {
-		return total;
-	}
-
-	public void setTotal(double total) {
-		this.total = total;
-	}
+	
+	
 
 }

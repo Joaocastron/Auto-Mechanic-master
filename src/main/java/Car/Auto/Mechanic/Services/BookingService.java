@@ -6,6 +6,7 @@ import java.util.List;
 import Car.Auto.Mechanic.DTO.BookingDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.Vehicle;
+import Car.Auto.Mechanic.Models.Status;
 
 public interface BookingService {
 
@@ -18,5 +19,11 @@ public interface BookingService {
 	List<Booking> getByPeriod(LocalDate startDate, LocalDate endDate);
 
 	Booking save(BookingDTO bookingDTO);
+	
+	List<Booking> getByStatus(Status status);
+	
+	List<Booking> findByUser(long userId);
+	
+	
 
 }

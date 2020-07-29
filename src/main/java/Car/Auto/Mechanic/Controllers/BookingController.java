@@ -63,6 +63,6 @@ public class BookingController {
 		// Save booking
 		bookingService.save(bookingDTO);
 
-		return "redirect:/booking?success";
+		return "redirect:/userPage?success";
 	}
 }
