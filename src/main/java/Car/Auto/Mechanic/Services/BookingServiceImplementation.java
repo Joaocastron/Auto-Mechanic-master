@@ -60,6 +60,11 @@ public class BookingServiceImplementation implements BookingService {
 		}
 		return null;
 	}
+	
+	@Override
+	public Booking save(Booking booking) {
+		return bookingRepository.save(booking);
+	}
 
 	@Override
 	public Booking save(BookingDTO bookingDTO) {
@@ -98,5 +103,13 @@ public class BookingServiceImplementation implements BookingService {
 		
 		return bookingRepository.findByUser(userId);
 	}
+
+	@Override
+	public Booking findById(long Id) {
+		
+		return bookingRepository.findById(Id);
+	}
+
+	
 
 }

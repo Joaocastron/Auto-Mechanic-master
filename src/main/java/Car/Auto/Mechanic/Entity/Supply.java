@@ -7,9 +7,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+import Car.Auto.Mechanic.DTO.SupplyDTO;
+
 
 @Entity
 public class Supply {
+
+	public Supply() {
+		super();
+	}
+
+	public Supply(SupplyDTO supplyDTO) {
+		super();
+		this.id = supplyDTO.getId();
+		this.SupplyName = supplyDTO.getSupplyName();
+		this.price = supplyDTO.getPrice();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -21,11 +34,6 @@ public class Supply {
 	
 	@ManyToMany(mappedBy = "supplies")
 	private Set<Invoice> invoices;
-
-	public Supply() {
-		super();
-
-	}
 
 	public long getId() {
 		return id;

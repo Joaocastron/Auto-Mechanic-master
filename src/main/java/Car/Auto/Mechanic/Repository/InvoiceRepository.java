@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 import Car.Auto.Mechanic.Entity.Invoice;
 
 @Repository
-public interface InvoceRepository extends JpaRepository<Invoice, Long> {
+public interface InvoiceRepository extends JpaRepository<Invoice, Long> {
 
 }

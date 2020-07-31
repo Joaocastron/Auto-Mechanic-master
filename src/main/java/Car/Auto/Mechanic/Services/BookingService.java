@@ -24,6 +24,8 @@ public interface BookingService {
 	
 	List<Booking> findByUser(long userId);
 	
-	
+	Booking findById(long id);
+
+	Booking save(Booking booking);
 
 }

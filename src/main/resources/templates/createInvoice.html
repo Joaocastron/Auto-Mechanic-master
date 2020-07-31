@@ -21,6 +21,24 @@
 						    </option>
 						</select>
 				</div>
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="supply, itemSupply : *{supplies}">
+							<td><input hidden th:name="|supplies[${itemSupply.index}].id|" th:value="${supply.getId()}"/></td>
+							<td><input disabled th:name="|supplies[${itemSupply.index}].name|" th:value="${supply.getSupplyName()}"/></td>
+							<td><input type="checkbox" th:name="|supplies[${itemSupply.index}].added|" /></td>
+						</tr>
+					</tbody>
+				</table>
+				<div class="form-froup">
+	            	<button type="submit" class="btn btn-success">Create Incoice</button>
+	            </div>
             </form>
             </div>
         </div>
