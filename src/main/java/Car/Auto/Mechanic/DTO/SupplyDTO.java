@@ -10,6 +10,13 @@ public class SupplyDTO {
 	private boolean added;
 	
 	
+	public SupplyDTO() {
+		super();
+	
+	}
+
+
+
 	public SupplyDTO(Supply supply) {
 		super();
 		this.id = supply.getId();

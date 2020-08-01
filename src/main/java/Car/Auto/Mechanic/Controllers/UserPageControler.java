@@ -1,7 +1,6 @@
 package Car.Auto.Mechanic.Controllers;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.AnonymousAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -10,8 +9,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-
 import Car.Auto.Mechanic.DTO.UserPageDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.User;

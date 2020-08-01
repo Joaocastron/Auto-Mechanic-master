@@ -10,6 +10,10 @@ public class InvoiceDTO {
 	private Booking booking;
 	
 	private long bookingId;
+	
+	private String BookingComments;
+	
+	
 
 	private Set<SupplyDTO> supplies;
 
@@ -42,5 +46,15 @@ public class InvoiceDTO {
 	public void setSupplies(Set<SupplyDTO> supplies) {
 		this.supplies = supplies;
 	}
+
+	public String getBookingComments() {
+		return BookingComments;
+	}
+
+	public void setBookingComments(String bookingComments) {
+		BookingComments = bookingComments;
+	}
+	
+	
 
 }

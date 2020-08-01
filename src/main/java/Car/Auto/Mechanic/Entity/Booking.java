@@ -35,7 +35,7 @@ public class Booking {
 	private Status status;
 
 	private double price;
-	
+
 	@OneToOne
 	private Invoice invoice;
 
@@ -64,7 +64,7 @@ public class Booking {
 	public void setVehicle(Vehicle vehicle) {
 		this.vehicle = vehicle;
 	}
-	
+
 	public Vehicle getVehicle() {
 		return vehicle;
 	}
@@ -107,6 +107,14 @@ public class Booking {
 
 	public void setPrice(double price) {
 		this.price = price;
+	}
+
+	public Invoice getInvoice() {
+		return invoice;
+	}
+
+	public void setInvoice(Invoice invoice) {
+		this.invoice = invoice;
 	}
 
 	public LocalDate getTimeStamp() {

@@ -1,15 +1,11 @@
 package Car.Auto.Mechanic.Services;
 
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
 import Car.Auto.Mechanic.DTO.UserRegistrationDTO;
-import Car.Auto.Mechanic.Entity.Role;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Repository.UserRepository;
 
@@ -55,4 +51,10 @@ public class UserServiceImplementation implements UserService {
 
         return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getAuthority());
     }
+
+	@Override
+	public User findById(long id) {
+		
+		return userRepository.findById(id);
+	}
 }
