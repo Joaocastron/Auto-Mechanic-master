@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import Car.Auto.Mechanic.Entity.Booking;
+import Car.Auto.Mechanic.Models.Status;
 
 
 @Repository(value = "bookingRepository")
@@ -29,5 +30,6 @@ public interface BookingRepository extends JpaRepository<Booking, Long> {
 	@Query(value = "SELECT * FROM booking WHERE id =:id", nativeQuery = true)
 	Booking findById(long id);
 	
-	
+	@Query (value = "SELECT * FROM booking INNER JOIN user ON booking.customer_id=user.id  WHERE booking.id =:bookingId OR user.name =:customerName OR user.phone =:customerPhone OR booking.status =:status", nativeQuery = true)
+	List<Booking> findBySearch (String customerName, String customerPhone, long bookingId, Status status);
 }

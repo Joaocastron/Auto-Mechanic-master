@@ -46,6 +46,7 @@ public class InvoiceController {
 
 	@ModelAttribute("invoice")
 	public InvoiceDTO invoiceDTO() {
+		
 		InvoiceDTO invoiceDTO = new InvoiceDTO();
 
 		Set<Supply> supplies = supplyService.getAll();
@@ -57,14 +58,16 @@ public class InvoiceController {
 		}
 
 		invoiceDTO.setSupplies(suppliesDTO);
-
+		
 		return invoiceDTO;
 	}
 
 	@PostMapping("/createInvoice")
 	public String saveInvoice(@ModelAttribute("invoice") @Valid InvoiceDTO invoiceDTO, BindingResult result) {
+		
 		Invoice invoice = new Invoice();
-
+		
+		
 		Set<Supply> supplies = new HashSet<>();
 
 		for (SupplyDTO supplyDTO : invoiceDTO.getSupplies()) {
@@ -75,6 +78,8 @@ public class InvoiceController {
 
 		Booking booking = bookingService.findById(invoiceDTO.getBookingId());
 		// booking.setStatus(Status.Completed);
+		booking.setComments(invoiceDTO.getBookingComments());
+		
 		invoice.setBooking(booking);
 		invoice.setSupplies(supplies);
 

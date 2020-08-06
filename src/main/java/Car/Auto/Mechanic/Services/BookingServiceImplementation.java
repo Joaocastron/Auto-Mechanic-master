@@ -110,6 +110,12 @@ public class BookingServiceImplementation implements BookingService {
 		return bookingRepository.findById(Id);
 	}
 
+	@Override
+	public List<Booking> findBySearch(String customerName, String customerPhone, long bookingId, Status status) {
+		
+		return bookingRepository.findBySearch(customerName, customerPhone, bookingId, status);
+	}
+
 	
 
 }

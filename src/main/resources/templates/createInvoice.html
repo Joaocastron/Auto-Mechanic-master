@@ -21,7 +21,12 @@
 						    </option>
 						</select>
 				</div>
-	
+				
+	 			<div class="form-group">
+                  <label for="bookingComments" class="control-label">BookingComment</label>
+                  <input id="bookingComments" class=" form-control" th:field="*{bookingComments}"/>
+                <!--  <p class="error-message" th:each="error: ${#fields.errors('bookingComments')}" th:text="${error}">Validation error</p> -->
+               </div>
 				<table>
 					<thead>
 						<tr>

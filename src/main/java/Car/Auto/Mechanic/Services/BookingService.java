@@ -27,5 +27,7 @@ public interface BookingService {
 	Booking findById(long id);
 
 	Booking save(Booking booking);
+		
+	List<Booking> findBySearch (String customerName, String customerPhone, long bookingId, Status status);
 
 }
