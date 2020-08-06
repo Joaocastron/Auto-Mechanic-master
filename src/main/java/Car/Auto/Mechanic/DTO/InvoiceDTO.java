@@ -8,12 +8,10 @@ import Car.Auto.Mechanic.DTO.SupplyDTO;
 public class InvoiceDTO {
 
 	private Booking booking;
-	
+
 	private long bookingId;
-	
+
 	private String BookingComments;
-	
-	
 
 	private Set<SupplyDTO> supplies;
 
@@ -29,7 +27,6 @@ public class InvoiceDTO {
 	public void setBooking(Booking booking) {
 		this.booking = booking;
 	}
-	
 
 	public long getBookingId() {
 		return bookingId;
@@ -54,7 +51,5 @@ public class InvoiceDTO {
 	public void setBookingComments(String bookingComments) {
 		BookingComments = bookingComments;
 	}
-	
-	
 
 }
