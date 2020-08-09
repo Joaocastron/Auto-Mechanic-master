@@ -20,6 +20,7 @@ import Car.Auto.Mechanic.Services.UserService;
 @Controller
 public class UserPageControler {
 
+	// instantiation of repositories and services needed
 	@Autowired
 	private UserService userService;
 	
@@ -29,6 +30,7 @@ public class UserPageControler {
 	@Autowired
 	private BookingRepository bookingRepository;
 
+	// authentication method identifying logged user
 	public String Owner() {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -39,22 +41,29 @@ public class UserPageControler {
 		return null;
 	}
 
+
+	// GET http://localhost:8080/userPage
 	@GetMapping("/userPage")
 	public String userPage(Model model) {
 		return "userPage";
 	}
 	
+	//user page attribute returning  information of the logged user
 	@ModelAttribute("userPage")
 	public UserPageDTO userPageDTO() {
 		UserPageDTO userPageDTO = new UserPageDTO();
 		
 		String name = Owner();
+		
+		//user personal information 
 		User user = userService.findByEmail(name);
 		userPageDTO.setUser(user);
 		
+		// vehicles user has 
 		List<Vehicle> vehicle = vehicleRepository.findbyUser(user.getId());
 		userPageDTO.setVehicles(vehicle);
 		
+		// all booking the user has
 		List <Booking> booking = bookingRepository.findByUser(user.getId());		
 		userPageDTO.setBooking(booking);
 		

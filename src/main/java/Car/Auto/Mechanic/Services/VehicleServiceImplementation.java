@@ -13,17 +13,20 @@ import Car.Auto.Mechanic.Repository.VehicleRepository;
 @Service
 public class VehicleServiceImplementation implements VehicleService {
 
+	// repositories and services instantiations
 	@Autowired
 	private VehicleRepository vehicleRepository;
 
 	@Autowired
 	private UserService userService;
 
+	// method returning vehicle by license
 	@Override
 	public Vehicle findByLincence(String licence) {
 		return vehicleRepository.findbyLicence(licence);
 	}
 
+	// authentication method identifying logged user
 	public String Owner() {
 
 		Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
@@ -34,6 +37,7 @@ public class VehicleServiceImplementation implements VehicleService {
 		return null;
 	}
 
+	// method saving vehicles in the repository
 	public Vehicle save(VehicleRegsDTO vehicleDTO) {
 
 		Vehicle vehicle = new Vehicle();

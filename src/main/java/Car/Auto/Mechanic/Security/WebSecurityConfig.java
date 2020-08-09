@@ -10,65 +10,49 @@ import org.springframework.security.config.annotation.web.configuration.EnableWe
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
-
 import Car.Auto.Mechanic.Services.UserService;
-
-
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    @Autowired
-    private UserService userService;
-   
-   
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http
-            .authorizeRequests()
-                .antMatchers("/register","/vehicleRegister","/booking","/newSupply","/home","/createInvoice","/userPage","/search","/editBooking",
-                "/js/**",
-                "/css/**",
-                "/img/**",
-                "/webjars/**").permitAll()
-               //.antMatchers("/booking").hasRole("CUSTOMER")
-                .antMatchers("/allocate").hasRole("ADMIN")
-                .antMatchers("/login*").permitAll()
-                .anyRequest().authenticated()
-            .and()
-            .formLogin()
-                .loginPage("/login")
-                .defaultSuccessUrl("/userPage", true)
-                .permitAll()
-            .and()
-                .logout()
-                    .invalidateHttpSession(true)
-                    .clearAuthentication(true)
-                    .logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
-                    .logoutSuccessUrl("/home?logout")
-            .permitAll();
-    }
+	@Autowired
+	private UserService userService;
 
-    @Override
-    protected void configure(AuthenticationManagerBuilder authManager) throws Exception{
-        authManager.authenticationProvider(authenticationProvider());
-    }
+	@Override
+	protected void configure(HttpSecurity http) throws Exception {
+		http.authorizeRequests()
+				.antMatchers("/register", "/vehicleRegister", "/booking", "/newSupply", "/home", "/createInvoice",
+						"/userPage", "/search", "/editBooking",
+						"/js/**", 
+						"/css/**", 
+						"/img/**", 
+						"/webjars/**")
+				.permitAll()
+				// .antMatchers("/booking").hasRole("CUSTOMER")
+				.antMatchers("/allocate").hasRole("ADMIN").antMatchers("/login*").permitAll().anyRequest()
+				.authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/userPage", true).permitAll()
+				.and().logout().invalidateHttpSession(true).clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home?logout")
+				.permitAll();
+	}
 
-    @Bean
-    public DaoAuthenticationProvider authenticationProvider(){
-        DaoAuthenticationProvider DAOAuthProvider = new DaoAuthenticationProvider();
-        DAOAuthProvider.setUserDetailsService(userService);
-        DAOAuthProvider.setPasswordEncoder(passwordEncoder());
-     
-        
-        return DAOAuthProvider;
-    }
-    
-   
+	@Override
+	protected void configure(AuthenticationManagerBuilder authManager) throws Exception {
+		authManager.authenticationProvider(authenticationProvider());
+	}
 
-    @Bean
-    public BCryptPasswordEncoder passwordEncoder(){
-        return new BCryptPasswordEncoder();
-    }
+	@Bean
+	public DaoAuthenticationProvider authenticationProvider() {
+		DaoAuthenticationProvider DAOAuthProvider = new DaoAuthenticationProvider();
+		DAOAuthProvider.setUserDetailsService(userService);
+		DAOAuthProvider.setPasswordEncoder(passwordEncoder());
+
+		return DAOAuthProvider;
+	}
+
+	@Bean
+	public BCryptPasswordEncoder passwordEncoder() {
+		return new BCryptPasswordEncoder();
+	}
 }

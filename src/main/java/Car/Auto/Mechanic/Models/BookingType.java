@@ -1,15 +1,15 @@
 package Car.Auto.Mechanic.Models;
 
+// Enum used for booking type determination
+
 public enum BookingType {
 
 	Annual("Annual Service"), Major("Major Service"), Repair("Repair / Fault"), MReair("Major Repair");
-	
-	private final String displayType;
 
-	private BookingType(String displayType) {
-	        this.displayType = displayType;
-	    }
+	public final String lable;
 
-	public String getDisplayValue() {
-	        return displayType;}
+	private BookingType(String lable) {
+		this.lable = lable;
+	}
+
 }

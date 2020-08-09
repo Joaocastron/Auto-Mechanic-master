@@ -12,49 +12,51 @@ import Car.Auto.Mechanic.Repository.UserRepository;
 @Service
 public class UserServiceImplementation implements UserService {
 
-    @Autowired
-    private UserRepository userRepository;
+	// instantiation of user repository
+	@Autowired
+	private UserRepository userRepository;
 
-    @Autowired
-    private BCryptPasswordEncoder passwordEncoder;
+	// instantiation password encoder
+	@Autowired
+	private BCryptPasswordEncoder passwordEncoder;
 
-    public User findByEmail(String email) {
-        return userRepository.findByEmail(email);
-    }
-    
-    public User findByName(String name) {
-        return userRepository.findByName(name);
-    }
+	// method returning requests for user  from the repository
+	public User findByEmail(String email) {
+		return userRepository.findByEmail(email);
+	}
 
-    public User save(UserRegistrationDTO userDTO) {
-        User user = new User();
-        user.setName(userDTO.getName());
-        user.setSurname(userDTO.getSurname());
-        user.setPhone(userDTO.getPhone());
-        user.setEmail(userDTO.getEmail());
-        // Encode password to ensure a leek does not compromisse the system
-        user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
-        // Add register user_role
-       // Collection<Role> roles = new Collection<Role>();
-        //roles.add(userRepository.getCustomerRole());
-      //  user.setRoles(roles);
-        return userRepository.save(user);
-    }
-
-    @Override
-    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
-        User user = userRepository.findByEmail(email);
-        if(user == null)
-        {
-            throw new UsernameNotFoundException("Unable to authenticate, check yours credentials!");
-        }
-
-        return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(), user.getAuthority());
-    }
+	public User findByName(String name) {
+		return userRepository.findByName(name);
+	}
 
 	@Override
 	public User findById(long id) {
-		
+
 		return userRepository.findById(id);
 	}
+
+	// method saving user in the repository
+	public User save(UserRegistrationDTO userDTO) {
+		User user = new User();
+		user.setName(userDTO.getName());
+		user.setSurname(userDTO.getSurname());
+		user.setPhone(userDTO.getPhone());
+		user.setEmail(userDTO.getEmail());
+		user.setPassword(passwordEncoder.encode(userDTO.getPassword()));
+
+		return userRepository.save(user);
+	}
+
+	// user authentications methods 
+	@Override
+	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+		User user = userRepository.findByEmail(email);
+		if (user == null) {
+			throw new UsernameNotFoundException("Unable to authenticate, check yours credentials!");
+		}
+
+		return new org.springframework.security.core.userdetails.User(user.getEmail(), user.getPassword(),
+				user.getAuthority());
+	}
+
 }

@@ -5,25 +5,25 @@ import javax.validation.constraints.NotEmpty;
 
 public class UserRegistrationDTO {
 
-    public UserRegistrationDTO() {
-        super();
-    }
-    
-    @NotEmpty
-    private String name;
-    
-    @NotEmpty
-    private String surname;
-    
-    @NotEmpty
-    private String phone;
+	@NotEmpty(message = "May not be empty")
+	private String name;
 
-    @Email
-    @NotEmpty
-    private String email;
+	@NotEmpty(message = "May not be empty")
+	private String surname;
 
-    @NotEmpty
-    private String password;
+	@NotEmpty(message = "May not be empty")
+	private String phone;
+
+	@Email
+	@NotEmpty(message = "May not be empty")
+	private String email;
+
+	@NotEmpty(message = "May not be empty")
+	private String password;
+
+	public UserRegistrationDTO() {
+		super();
+	}
 
 	public String getName() {
 		return name;
@@ -64,7 +64,5 @@ public class UserRegistrationDTO {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-  
 
 }

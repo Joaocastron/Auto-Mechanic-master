@@ -16,24 +16,27 @@ import Car.Auto.Mechanic.Services.VehicleService;
 @Controller
 public class VehicleRegisterController {
 
+	// instantiation of repositories and services needed
 	@Autowired
 	private VehicleService vehicleService;
 
+	// model attribute for vehicleDTO creating new vehicle
 	@ModelAttribute("vehicle")
 	public VehicleRegsDTO vehicleRegsDTO() {
 
 		return new VehicleRegsDTO();
 	}
 
-	
+	// GET http://localhost:8080/vehicleRegister
 	@GetMapping("/vehicleRegister")
 	public String register(Model model) {
 		return "vehicleRegister";
 	}
-
+	// POST http://localhost:8080/vehicleRegister
 	@PostMapping("/vehicleRegister")
 	public String vehicleRegister(@ModelAttribute("vehicle") @Valid VehicleRegsDTO vehicleDTO, BindingResult result) {
 
+		// checking if there is  vehicle with the same license in the data bases
 		Vehicle existingVehicle = vehicleService.findByLincence(vehicleDTO.getLicence());
 
 		if (existingVehicle != null) {

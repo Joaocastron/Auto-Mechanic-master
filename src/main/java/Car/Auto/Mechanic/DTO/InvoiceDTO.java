@@ -1,17 +1,21 @@
 package Car.Auto.Mechanic.DTO;
 
 import java.util.Set;
-
 import Car.Auto.Mechanic.Entity.Booking;
+import Car.Auto.Mechanic.Models.Status;
 import Car.Auto.Mechanic.DTO.SupplyDTO;
 
 public class InvoiceDTO {
 
 	private Booking booking;
 
-	private long bookingId;
+	private Long bookingId;
 
 	private String BookingComments;
+
+	private Status status;
+
+	private Double price;
 
 	private Set<SupplyDTO> supplies;
 
@@ -28,11 +32,11 @@ public class InvoiceDTO {
 		this.booking = booking;
 	}
 
-	public long getBookingId() {
+	public Long getBookingId() {
 		return bookingId;
 	}
 
-	public void setBookingId(long bookingId) {
+	public void setBookingId(Long bookingId) {
 		this.bookingId = bookingId;
 	}
 
@@ -50,6 +54,22 @@ public class InvoiceDTO {
 
 	public void setBookingComments(String bookingComments) {
 		BookingComments = bookingComments;
+	}
+
+	public Status getStatus() {
+		return status;
+	}
+
+	public void setStatus(Status status) {
+		this.status = status;
+	}
+
+	public Double getPrice() {
+		return price;
+	}
+
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 
 }

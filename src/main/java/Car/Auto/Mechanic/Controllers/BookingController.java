@@ -19,48 +19,44 @@ import Car.Auto.Mechanic.Services.SchedulerService;
 @Controller
 public class BookingController {
 
+	// instantiation of repositories and services needed
 	@Autowired
 	private BookingService bookingService;
 
 	@Autowired
 	private SchedulerService schedulerService;
 
+	// model attribute for bookingDTO creating new booking 
 	@ModelAttribute("booking")
 	public BookingDTO bookingDTO() {
 
 		return new BookingDTO();
 	}
 
+	// model returning all the vehicle the logged user has.
 	@ModelAttribute("allVehicle")
 	public List<Vehicle> populateVehicles() {
 		return bookingService.findByUser();
 	}
 
+	// model for the available dates
 	@ModelAttribute("availableDates")
 	public ArrayList<LocalDate> getAvailableDates() {
 		ArrayList<LocalDate> dates = schedulerService.getFreeSpot();
 		return dates;
 	}
 
+	// GET http://localhost:8080/booking
 	@GetMapping("/booking")
 	public String booking(Model model) {
 		return "booking";
 	}
 
+	// Post http://localhost:8080/booking
 	@PostMapping("/booking")
 	public String BookingRegister(@ModelAttribute("booking") @Valid BookingDTO bookingDTO, BindingResult result) {
 
-		// Verify existing bookings
-		/*
-		 * boolean isBooked = bookingService.isBooked(bookingDTO.getVehicleLicence());
-		 * 
-		 * if (isBooked ) {
-		 * 
-		 * result.rejectValue("Vehicle", null, "There is a booking already made"); } if
-		 * (result.hasErrors()) { return "booking"; }
-		 */
-
-		// Save booking
+		// saving bookings
 		bookingService.save(bookingDTO);
 
 		return "redirect:/userPage?success";

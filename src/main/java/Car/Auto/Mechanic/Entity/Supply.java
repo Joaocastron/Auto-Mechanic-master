@@ -9,7 +9,7 @@ import javax.persistence.ManyToMany;
 
 import Car.Auto.Mechanic.DTO.SupplyDTO;
 
-
+//Supply booking class using JPA notation
 @Entity
 public class Supply {
 

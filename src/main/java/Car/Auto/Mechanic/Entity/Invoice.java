@@ -11,8 +11,13 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 
+//Invoice booking class using JPA notation
 @Entity
 public class Invoice {
+
+	public Invoice() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,12 +29,6 @@ public class Invoice {
 	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "invoices_supplies", joinColumns = @JoinColumn(name = "invoice_id"), inverseJoinColumns = @JoinColumn(name = "supply_id"))
 	private Set<Supply> supplies;
-	
-	
-
-	public Invoice() {
-		super();
-	}
 
 	public long getId() {
 		return id;
@@ -54,7 +53,5 @@ public class Invoice {
 	public void setSupplies(Set<Supply> supplies) {
 		this.supplies = supplies;
 	}
-	
-	
 
 }

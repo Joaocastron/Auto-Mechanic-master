@@ -1,28 +1,27 @@
 package Car.Auto.Mechanic.DTO;
 
 import java.util.List;
-
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Models.Status;
 
 public class SearchBookingDTO {
-	
+
 	private User user;
-	
-	private List <Booking> booking;
-	
+
+	private List<Booking> booking;
+
 	private String getName;
-	
+
 	private String getPhone;
-	
+
 	private long getBookingId;
-	
-	 private Status getStatus; 
+
+	private Status getStatus;
 
 	public SearchBookingDTO() {
 		super();
-	
+
 	}
 
 	public User getUser() {
@@ -72,11 +71,5 @@ public class SearchBookingDTO {
 	public void setGetStatus(Status getStatus) {
 		this.getStatus = getStatus;
 	}
-
-	
-	
-	
-	
-	
 
 }

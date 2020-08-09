@@ -1,7 +1,6 @@
 package Car.Auto.Mechanic.Controllers;
 
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,7 +15,6 @@ import Car.Auto.Mechanic.DTO.SupplyDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.Invoice;
 import Car.Auto.Mechanic.Entity.Supply;
-import Car.Auto.Mechanic.Models.Status;
 import Car.Auto.Mechanic.Services.BookingService;
 import Car.Auto.Mechanic.Services.InvoiceService;
 import Car.Auto.Mechanic.Services.SupplyService;
@@ -24,6 +22,7 @@ import Car.Auto.Mechanic.Services.SupplyService;
 @Controller
 public class InvoiceController {
 
+	// instantiation of repositories and services needed
 	@Autowired
 	private BookingService bookingService;
 
@@ -33,11 +32,6 @@ public class InvoiceController {
 	@Autowired
 	private InvoiceService invoiceService;
 
-	@ModelAttribute("allBookings")
-	public List<Booking> populateBooking() {
-		return bookingService.getByStatus(Status.BOOKED);
-	}
-
 	@GetMapping("/createInvoice")
 	public String createInvoice(Model model) {
 
@@ -46,7 +40,7 @@ public class InvoiceController {
 
 	@ModelAttribute("invoice")
 	public InvoiceDTO invoiceDTO() {
-		
+
 		InvoiceDTO invoiceDTO = new InvoiceDTO();
 
 		Set<Supply> supplies = supplyService.getAll();
@@ -58,16 +52,15 @@ public class InvoiceController {
 		}
 
 		invoiceDTO.setSupplies(suppliesDTO);
-		
+
 		return invoiceDTO;
 	}
 
 	@PostMapping("/createInvoice")
 	public String saveInvoice(@ModelAttribute("invoice") @Valid InvoiceDTO invoiceDTO, BindingResult result) {
-		
+
 		Invoice invoice = new Invoice();
-		
-		
+
 		Set<Supply> supplies = new HashSet<>();
 
 		for (SupplyDTO supplyDTO : invoiceDTO.getSupplies()) {
@@ -79,7 +72,7 @@ public class InvoiceController {
 		Booking booking = bookingService.findById(invoiceDTO.getBookingId());
 		// booking.setStatus(Status.Completed);
 		booking.setComments(invoiceDTO.getBookingComments());
-		
+
 		invoice.setBooking(booking);
 		invoice.setSupplies(supplies);
 

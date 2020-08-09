@@ -16,23 +16,28 @@ import Car.Auto.Mechanic.Services.SupplyService;
 @Controller
 public class SupplyController {
 
+	// instantiation of repositories and services needed
 	@Autowired
 	private SupplyService supplyService;
 
+	// model attribute for SupplyDTO creating new supply
 	@ModelAttribute("supply")
 	public SupplyDTO suppliesDTO() {
 
 		return new SupplyDTO();
 	}
 
+	// GET http://localhost:8080/newSupply
 	@GetMapping("/newSupply")
 	public String supply(Model model) {
 		return "newSupply";
 	}
 
+	// POST http://localhost:8080/newSupply
 	@PostMapping("/newSupply")
 	public String SupplyRegister(@ModelAttribute("supply") @Valid SupplyDTO supplyDTO, BindingResult result) {
 
+		// checking if the supply already exists in the databases by supply name
 		Supply existingSupply = supplyService.findBySupplyName(supplyDTO.getSupplyName());
 
 		if (existingSupply != null) {
@@ -45,6 +50,6 @@ public class SupplyController {
 
 		supplyService.save(supplyDTO);
 
-		return "redirect:/register?success";
+		return "redirect:/search?success";
 	}
 }

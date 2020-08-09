@@ -1,35 +1,43 @@
 package Car.Auto.Mechanic.Entity;
 
 import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
-
 import Car.Auto.Mechanic.Models.Engine;
 import Car.Auto.Mechanic.Models.Make;
 import Car.Auto.Mechanic.Models.Model;
 
+//Vehicle booking class using JPA notation
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "licence"))
 public class Vehicle {
+
+	public Vehicle() {
+		super();
+
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
 
 	private Make make;
+
 	private Model model;
+
 	private String year;
+
 	private String licence;
+
 	private Engine engine;
+
 	private String comments;
 
 	@OneToOne(fetch = FetchType.EAGER)
@@ -37,11 +45,6 @@ public class Vehicle {
 
 	@OneToMany
 	private Collection<Booking> booking;
-
-	public Vehicle() {
-		super();
-
-	}
 
 	public User getUser() {
 		return owner;

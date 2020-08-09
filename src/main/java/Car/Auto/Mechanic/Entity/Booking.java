@@ -12,9 +12,15 @@ import javax.persistence.UniqueConstraint;
 import Car.Auto.Mechanic.Models.BookingType;
 import Car.Auto.Mechanic.Models.Status;
 
+// Entity booking class using JPA notation
+
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "id"))
 public class Booking {
+
+	public Booking() {
+		super();
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,14 +42,10 @@ public class Booking {
 
 	private double price;
 
-	@OneToOne
-	private Invoice invoice;
-
 	private LocalDate timeStamp;
 
-	public Booking() {
-		super();
-	}
+	@OneToOne
+	private Invoice invoice;
 
 	public User getCustomer() {
 		return customer;

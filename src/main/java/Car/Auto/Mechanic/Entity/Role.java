@@ -7,6 +7,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
 
+
+//Role booking class using JPA notation
 @Entity
 public class Role {
     

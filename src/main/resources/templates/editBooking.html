@@ -13,12 +13,75 @@
  <div class="container">
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-            	
-            	
+            
+<table class="table table-sm	x table-dark">
+ 			 <thead>
+    			<tr>
+				<th scope="col"> Date</th>
+    			  <th scope="col"> Vehicle</th>
+    			  <th scope="col"> Licence</th>
+		   	      <th scope="col"> Type</th>
+		   	      <th scope="col"> Description</th>
+		   	      <th scope="col"> Comments</th>
+		   	      <th scope="col"> Status</th>
+		      </tr>
+		     </thead>
+		     <tbody>
+		           	<tr th:each="booking: ${invoice.booking}">
+		      		<td th:text="${booking.timeStamp}">&nbsp;</td>
+		      		<td th:text="${booking.vehicle.make}">&nbsp;</td>
+		      		<td th:text="${booking.vehicle.licence}">&nbsp;</td>
+		      		<td th:text="${booking.type}">&nbsp;</td>
+		      		<td th:text="${booking.description}">&nbsp;</td>
+		      		<td th:text="${booking.comments}">&nbsp;</td>
+		      		<td th:text="${booking.status}">&nbsp;</td>
+		    </tr>
+		  </tbody>
+		</table>
+		
+		 <form th:action="@{/editBooking}" th:object="${invoice}" method="POST">
+		 
+		<div class="form-group">
+             <select th:field="*{status}" class=" form-control">
+                     <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
+                     </option>
+                  </select>           
+				 </div>
+				 
+	 			<div class="form-group">
+                  <label for="bookingComments" class="control-label">BookingComment</label>
+                  <input id="bookingComments" class=" form-control" th:field="*{bookingComments}"/>
+               </div>
+               	<div class="form-group">
+                  <label for="price" class="control-label">Service Price</label>
+                  <input id="price" class=" form-control" th:field="*{price}"/>
+                
+               </div>
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="supply, itemSupply : *{supplies}">
+							<td><input hidden th:name="|supplies[${itemSupply.index}].id|" th:value="${supply.getId()}"/></td>
+							<td><input disabled th:name="|supplies[${itemSupply.index}].name|" th:value="${supply.getSupplyName()}"/></td>
+							<td><input type="checkbox" th:name="|supplies[${itemSupply.index}].added|" /></td>
+						</tr>
+					</tbody>
+				</table>
+				 <p><span>Click here and register a <a href="/" th:href="@{/newSupply}"> new Supply</a></span></p>
+				
+				<div class="form-group">
+	            	<button type="submit" class="btn btn-success">Submit</button>
+	            </div>
+	            
+            </form>
             </div>
         </div>
       </div>
-            
             
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>

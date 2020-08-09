@@ -1,6 +1,9 @@
 package Car.Auto.Mechanic.DTO;
 
 import java.time.LocalDate;
+
+import javax.validation.constraints.NotEmpty;
+
 import org.springframework.format.annotation.DateTimeFormat;
 import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Entity.Vehicle;
@@ -10,10 +13,16 @@ import Car.Auto.Mechanic.Models.Status;
 public class BookingDTO {
 
 	private Vehicle vehicle;
+	
 	private User Customer;
+	
 	private BookingType Type;
+	
+	@NotEmpty(message = "May not be empty")
 	private String description;
+	
 	private String comments;
+	
 	private Status status;
 
 	private String vehicleLicence;

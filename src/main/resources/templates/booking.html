@@ -68,7 +68,7 @@
                <div class="form-group" th:classappend="${#fields.hasErrors('type')} ? 'has-errors': ''">
                   <label for="type" class="control-label">Type</label>
                   <select th:field="*{type}" class=" form-control">
-                     <option th:each="i : ${T(Car.Auto.Mechanic.Models.BookingType).values()}" th:value="${i}" th:text="${i}">
+                     <option th:each="i : ${T(Car.Auto.Mechanic.Models.BookingType).values()}" th:value="${i}" th:text="${i.lable}">
                      </option>
                   </select>
                </div>

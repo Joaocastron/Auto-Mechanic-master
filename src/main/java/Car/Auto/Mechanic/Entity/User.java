@@ -8,6 +8,7 @@ import javax.persistence.*;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 
+//Users booking class using JPA notation
 @Entity
 @Table(uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
@@ -40,7 +41,7 @@ public class User {
 	public long getId() {
 		return id;
 	}
-	
+
 	public String getName() {
 		return name;
 	}
@@ -94,10 +95,4 @@ public class User {
 		return roles.stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList());
 	}
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", surname=" + surname + ", phone=" + phone + "]";
-	}
-	
-	
 }
