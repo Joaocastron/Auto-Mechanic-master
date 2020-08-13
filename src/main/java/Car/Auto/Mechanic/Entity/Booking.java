@@ -1,11 +1,17 @@
 package Car.Auto.Mechanic.Entity;
 
 import java.time.LocalDate;
+import java.util.Set;
+
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
@@ -43,7 +49,11 @@ public class Booking {
 	private double price;
 
 	private LocalDate timeStamp;
-
+	
+	@ManyToMany(fetch = FetchType.EAGER)
+	@JoinTable(name = "booking_supplies", joinColumns = @JoinColumn(name = "booking_id"), inverseJoinColumns = @JoinColumn(name = "supply_id"))
+	private Set<Supply> supplies;
+	
 	@OneToOne
 	private Invoice invoice;
 
@@ -113,6 +123,15 @@ public class Booking {
 
 	public Invoice getInvoice() {
 		return invoice;
+	}
+	
+
+	public Set<Supply> getSupplies() {
+		return supplies;
+	}
+
+	public void setSupplies(Set<Supply> supplies) {
+		this.supplies = supplies;
 	}
 
 	public void setInvoice(Invoice invoice) {

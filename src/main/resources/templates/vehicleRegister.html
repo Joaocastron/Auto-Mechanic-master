@@ -10,23 +10,20 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
    </head>
    <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+ <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
          <div class="container">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav mr -auto">
                   <li class="nav-item active">
-                     <a class="nav-link" href="#" th:href="@{/home}">Home
+                     <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
                      <span class="sr-only">(current)</span>
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/services}">Services</a>
+                     <a class="nav-link" href="#" th:href="@{/userPage}">Customer Space</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/booking}">Get Booking</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/vehicleRegister}">Register new Vehicle</a>
+                     <a class="nav-link" href="#" th:href="@{/booking}">Booking</a>
                   </li>
                    <li class="nav-item">
                      <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
@@ -49,7 +46,7 @@
             <div th:if="${param.success}">
                <div class="alert alert-info">Thank you for register with us</div>
             </div>
-            <h1>Vehicle Registration</h1>
+            <h1>Vehicle</h1>
             
             <form th:action="@{/vehicleRegister}" th:object="${vehicle}" method="POST">
             
@@ -70,7 +67,7 @@
                   </select>
                </div>
                <div class="form-group" th:classappend="${#fields.hasErrors('year')} ? 'has-errors': ''">
-                  <label for="year" class="control-label">Year</label>
+                  <label for="year" class="control-label">Fabrication Year</label>
                   <input id="year" class=" form-control" th:field="*{year}"/>
                   <p class="error-message" th:each="error: ${#fields.errors('year')}" th:text="${error}">Validation error</p>
                </div>

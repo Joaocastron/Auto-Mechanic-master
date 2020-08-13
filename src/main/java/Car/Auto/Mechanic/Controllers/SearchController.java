@@ -20,9 +20,9 @@ public class SearchController {
 	// instantiation of repositories and services needed
 	@Autowired
 	private BookingRepository bookingRepository;
-	
+
 	private static SearchBookingDTO searchDTO = new SearchBookingDTO();
-	
+
 	@ModelAttribute("searchDTO")
 	public SearchBookingDTO searchDTO() {
 		return searchDTO;
@@ -40,11 +40,9 @@ public class SearchController {
 		String customerPhone = searchDTO.getGetPhone();
 		Long bookingId = searchDTO.getGetBookingId();
 		Status status = searchDTO.getGetStatus();
-		
-		
 
 		List<Booking> booking = bookingRepository.findBySearch(customerName, customerPhone, bookingId, status);
-		
+
 		searchDTO.setBooking(booking);
 
 		return "redirect:/search";

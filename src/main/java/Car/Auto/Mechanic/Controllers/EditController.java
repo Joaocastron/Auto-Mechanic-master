@@ -2,18 +2,20 @@ package Car.Auto.Mechanic.Controllers;
 
 import java.util.HashSet;
 import java.util.Set;
-
 import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
-import Car.Auto.Mechanic.DTO.InvoiceDTO;
+import Car.Auto.Mechanic.DTO.editBookingDTO;
 import Car.Auto.Mechanic.DTO.SupplyDTO;
 import Car.Auto.Mechanic.Entity.Booking;
 import Car.Auto.Mechanic.Entity.Invoice;
@@ -30,25 +32,20 @@ public class EditController {
 	private BookingService bookingService;
 
 	@Autowired
-	private InvoiceService invoiceService;
-
-	@Autowired
 	private SupplyService supplyService;
 
-	// GET http://localhost:8080/editBooking
-	@GetMapping("/editBooking")
-	public String editInvoice(Model model) {
-		return "editBooking";
-	}
+	/*@ModelAttribute("bookingEdit")
+	public editBookingDTO editDTO(Long bookingId) {
+		
+		if(bookingId == null) {
+			return new editBookingDTO();
+		}
 
-	@ModelAttribute("invoice")
-	public InvoiceDTO invoiceDTO(Long bookingId) {
-
-		InvoiceDTO invoiceDTO = new InvoiceDTO();
+		editBookingDTO editDTO = new editBookingDTO();
 
 		Booking booking = bookingService.findById(bookingId);
 
-		invoiceDTO.setBooking(booking);
+		editDTO.setBooking(booking);
 
 		Set<Supply> supplies = supplyService.getAll();
 
@@ -58,35 +55,56 @@ public class EditController {
 			suppliesDTO.add(new SupplyDTO(supply));
 		}
 
-		invoiceDTO.setSupplies(suppliesDTO);
+		editDTO.setSupplies(suppliesDTO);
 
-		return invoiceDTO;
+		return editDTO;
+	}*/
+
+	// GET http://localhost:8080/editBooking
+	@GetMapping("/editBooking")
+	public String editInvoice(Model model, Long bookingId) {
+		
+		editBookingDTO editDTO = new editBookingDTO();
+
+		Booking booking = bookingService.findById(bookingId);
+
+		editDTO.setBooking(booking);
+
+		Set<Supply> supplies = supplyService.getAll();
+
+		Set<SupplyDTO> suppliesDTO = new HashSet<>();
+
+		for (Supply supply : supplies) {
+			suppliesDTO.add(new SupplyDTO(supply));
+		}
+
+		editDTO.setSupplies(suppliesDTO);
+		model.addAttribute("bookingEdit", editDTO);
+		return "editBooking";
 	}
 
-	
 	@PostMapping("/editBooking")
-	public String saveInvoice(@ModelAttribute("invoice") @Valid InvoiceDTO invoiceDTO, BindingResult result) {
+	public String saveInvoice(editBookingDTO editDTO, BindingResult result) {
 
-		Invoice invoice = new Invoice();
+		//Invoice invoice = new Invoice();
 
 		Set<Supply> supplies = new HashSet<>();
 
-		for (SupplyDTO supplyDTO : invoiceDTO.getSupplies()) {
+		for (SupplyDTO supplyDTO : editDTO.getSupplies()) {
 			if (supplyDTO.isAdded()) {
 				supplies.add(new Supply(supplyDTO));
 			}
 		}
 
-		Booking booking = invoiceDTO.getBooking();
-		booking.setStatus(invoiceDTO.getStatus());
-		booking.setPrice(invoiceDTO.getPrice());
-		booking.setComments(invoiceDTO.getBookingComments());
+		Booking booking = editDTO.getBooking();
+		booking.setStatus(editDTO.getStatus());
+		booking.setPrice(editDTO.getPrice());
+		booking.setComments(editDTO.getBookingComments());
+		booking.setSupplies(supplies);
 
-		invoice.setBooking(booking);
-		invoice.setSupplies(supplies);
-
+		
 		bookingService.save(booking);
-		invoiceService.save(invoice);
+		
 
 		return "redirect:/search";
 	}

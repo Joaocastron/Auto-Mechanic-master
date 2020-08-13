@@ -9,6 +9,30 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 </head>
 <body>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+         <div class="container">
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+               <ul class="navbar-nav mr -auto">
+                  <li class="nav-item active">
+                        <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
+                     <span class="sr-only">(current)</span>
+                     </a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#" th:href="@{/services}">Services</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#" th:href="@{/booking}">Get Booking</a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#" th:href="@{/vehicleRegister}">Register new Vehicle</a>
+                  </li>
+                   <li class="nav-item">
+                     <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
+                  </li>
+                  
+               </ul>
+            </div>
 
  <div class="container">
         <div class="row">
@@ -27,7 +51,7 @@
 		      </tr>
 		     </thead>
 		     <tbody>
-		           	<tr th:each="booking: ${invoice.booking}">
+		           	<tr th:each="booking: ${bookingEdit.booking}">
 		      		<td th:text="${booking.timeStamp}">&nbsp;</td>
 		      		<td th:text="${booking.vehicle.make}">&nbsp;</td>
 		      		<td th:text="${booking.vehicle.licence}">&nbsp;</td>
@@ -39,7 +63,8 @@
 		  </tbody>
 		</table>
 		
-		 <form th:action="@{/editBooking}" th:object="${invoice}" method="POST">
+		 <form th:action="@{/editBooking}" th:object="${bookingEdit}" method="POST" >
+		 
 		 
 		<div class="form-group">
              <select th:field="*{status}" class=" form-control">

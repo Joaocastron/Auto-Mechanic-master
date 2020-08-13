@@ -23,17 +23,25 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/register", "/vehicleRegister", "/booking", "/newSupply", "/home", "/createInvoice",
-						"/userPage", "/search", "/editBooking",
+						"/userPage", "/search", "/editBooking","/contacts","/services","/invoice","/roster",
 						"/js/**", 
 						"/css/**", 
 						"/img/**", 
 						"/webjars/**")
 				.permitAll()
-				// .antMatchers("/booking").hasRole("CUSTOMER")
-				.antMatchers("/allocate").hasRole("ADMIN").antMatchers("/login*").permitAll().anyRequest()
-				.authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/userPage", true).permitAll()
-				.and().logout().invalidateHttpSession(true).clearAuthentication(true)
-				.logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutSuccessUrl("/home?logout")
+				//.antMatchers("/booking").hasRole("CUSTOMER")
+				//.antMatchers("/allocate").hasRole("ADMIN")
+				.antMatchers("/login*")
+				.permitAll()
+				.anyRequest()
+				.authenticated().and().formLogin().loginPage("/login").defaultSuccessUrl("/homeApp", true)
+				.permitAll()
+				.and()
+				.logout()
+				.invalidateHttpSession(true)
+				.clearAuthentication(true)
+				.logoutRequestMatcher(new AntPathRequestMatcher("/logout"))
+				.logoutSuccessUrl("/home?logout")
 				.permitAll();
 	}
 

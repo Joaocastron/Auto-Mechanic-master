@@ -1,84 +1,47 @@
 package Car.Auto.Mechanic.Controllers;
 
-import java.util.HashSet;
-import java.util.Set;
-import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+
 import Car.Auto.Mechanic.DTO.InvoiceDTO;
-import Car.Auto.Mechanic.DTO.SupplyDTO;
 import Car.Auto.Mechanic.Entity.Booking;
-import Car.Auto.Mechanic.Entity.Invoice;
-import Car.Auto.Mechanic.Entity.Supply;
+import Car.Auto.Mechanic.Entity.User;
 import Car.Auto.Mechanic.Services.BookingService;
-import Car.Auto.Mechanic.Services.InvoiceService;
-import Car.Auto.Mechanic.Services.SupplyService;
+import Car.Auto.Mechanic.Services.UserService;
 
 @Controller
 public class InvoiceController {
-
-	// instantiation of repositories and services needed
+	
 	@Autowired
 	private BookingService bookingService;
-
 	@Autowired
-	private SupplyService supplyService;
-
-	@Autowired
-	private InvoiceService invoiceService;
-
-	@GetMapping("/createInvoice")
-	public String createInvoice(Model model) {
-
-		return "createInvoice";
-	}
-
+	private UserService userService;
+	
 	@ModelAttribute("invoice")
-	public InvoiceDTO invoiceDTO() {
-
+	public InvoiceDTO invoceDTO(Long bookingId) {
+		
 		InvoiceDTO invoiceDTO = new InvoiceDTO();
-
-		Set<Supply> supplies = supplyService.getAll();
-
-		Set<SupplyDTO> suppliesDTO = new HashSet<>();
-
-		for (Supply supply : supplies) {
-			suppliesDTO.add(new SupplyDTO(supply));
-		}
-
-		invoiceDTO.setSupplies(suppliesDTO);
-
+		
+		Booking booking = bookingService.findById(bookingId);
+		
+		User user = userService.findById(booking.getCustomer().getId());
+		
+		invoiceDTO.setBooking(booking);
+		invoiceDTO.setUser(user);
+		
 		return invoiceDTO;
+		
 	}
 
-	@PostMapping("/createInvoice")
-	public String saveInvoice(@ModelAttribute("invoice") @Valid InvoiceDTO invoiceDTO, BindingResult result) {
-
-		Invoice invoice = new Invoice();
-
-		Set<Supply> supplies = new HashSet<>();
-
-		for (SupplyDTO supplyDTO : invoiceDTO.getSupplies()) {
-			if (supplyDTO.isAdded()) {
-				supplies.add(new Supply(supplyDTO));
-			}
-		}
-
-		Booking booking = bookingService.findById(invoiceDTO.getBookingId());
-		// booking.setStatus(Status.Completed);
-		booking.setComments(invoiceDTO.getBookingComments());
-
-		invoice.setBooking(booking);
-		invoice.setSupplies(supplies);
-
-		bookingService.save(booking);
-		invoiceService.save(invoice);
-		return null;
+	
+	@GetMapping("/invoice")
+	public String invoice(Model model) {
+		return "invoice";
+		
+		
 	}
 
 }

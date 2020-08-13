@@ -22,5 +22,23 @@ public class MainController {
 		return "allocate";
 
 	}
+	
+	@GetMapping("/homeApp")
+	public String homeApp() {
+		return "homeApp";
+
+	}
+
+	@GetMapping("/contacts")
+	public String contacts() {
+		return "contacts";
+
+	}
+	@GetMapping("/services")
+	public String services() {
+		return "services";
+
+	}
+
 
 }

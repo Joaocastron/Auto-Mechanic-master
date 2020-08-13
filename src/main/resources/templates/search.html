@@ -14,18 +14,18 @@
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav mr -auto">
                   <li class="nav-item active">
-                     <a class="nav-link" href="#" th:href="@{/home}">Home
+                        <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
                      <span class="sr-only">(current)</span>
                      </a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/services}">Services</a>
+                     <a class="nav-link" href="#" th:href="@{/search}">Search</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/booking}">Get Booking</a>
+                     <a class="nav-link" href="#" th:href="@{/register}">new Customer</a>
                   </li>
                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/vehicleRegister}">Register new Vehicle</a>
+                     <a class="nav-link" href="#" th:href="@{/allocate}">Rostering</a>
                   </li>
                    <li class="nav-item">
                      <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
@@ -67,14 +67,14 @@
                   <label for="getBookingId" class="control-label">Booking ID</label>
                   <input id="getBookingId" class=" form-control" th:field="*{getBookingId}"/>
                 </div>
+                <div class="form-group">
                  <label for="getStatus" class="control-label">Status</label>
                   <select th:field="*{getStatus}" class=" form-control">
                      <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
                      </option>
                   </select>
-                 
-   
-               <div class="form-froup">
+                   </div>
+               <div class="form-group">
                   <button type="submit" class="btn btn-success">Register</button>
                </div>
             </form>
@@ -104,6 +104,8 @@
 		      		<td th:text="${booking.comments}">&nbsp;</td>
 		      		<td th:text="${booking.status}">&nbsp;</td>
 		      		<td><a class="nav-link" href="#" th:href="'/editBooking?bookingId='+${booking.id}">edit</td>
+		      		<td><a class="nav-link" href="#" th:href="'/invoice?bookingId='+${booking.id}">Invoice</td>
+		      		
 		    </tr>
 		  </tbody>
 		</table>
