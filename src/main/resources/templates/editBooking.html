@@ -1,119 +1,107 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <title>Service Update</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
-</head>
-<body>
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
-         <div class="container">
-            <div class="collapse navbar-collapse" id="navbarResponsive">
-               <ul class="navbar-nav mr -auto">
-                  <li class="nav-item active">
-                        <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
-                     <span class="sr-only">(current)</span>
-                     </a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/services}">Services</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/booking}">Get Booking</a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/vehicleRegister}">Register new Vehicle</a>
-                  </li>
-                   <li class="nav-item">
-                     <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
-                  </li>
-                  
-               </ul>
-            </div>
-
- <div class="container">
-        <div class="row">
-            <div class="col-md-6 col-md-offset-3">
-            
-<table class="table table-sm	x table-dark">
- 			 <thead>
-    			<tr>
-				<th scope="col"> Date</th>
-    			  <th scope="col"> Vehicle</th>
-    			  <th scope="col"> Licence</th>
-		   	      <th scope="col"> Type</th>
-		   	      <th scope="col"> Description</th>
-		   	      <th scope="col"> Comments</th>
-		   	      <th scope="col"> Status</th>
-		      </tr>
-		     </thead>
-		     <tbody>
-		           	<tr th:each="booking: ${bookingEdit.booking}">
-		      		<td th:text="${booking.timeStamp}">&nbsp;</td>
-		      		<td th:text="${booking.vehicle.make}">&nbsp;</td>
-		      		<td th:text="${booking.vehicle.licence}">&nbsp;</td>
-		      		<td th:text="${booking.type}">&nbsp;</td>
-		      		<td th:text="${booking.description}">&nbsp;</td>
-		      		<td th:text="${booking.comments}">&nbsp;</td>
-		      		<td th:text="${booking.status}">&nbsp;</td>
-		    </tr>
-		  </tbody>
-		</table>
-		
-		 <form th:action="@{/editBooking}" th:object="${bookingEdit}" method="POST" >
-		 
-		 
-		<div class="form-group">
-             <select th:field="*{status}" class=" form-control">
-                     <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
-                     </option>
-                  </select>           
-				 </div>
-				 
-	 			<div class="form-group">
-                  <label for="bookingComments" class="control-label">BookingComment</label>
-                  <input id="bookingComments" class=" form-control" th:field="*{bookingComments}"/>
-               </div>
-               	<div class="form-group">
-                  <label for="price" class="control-label">Service Price</label>
-                  <input id="price" class=" form-control" th:field="*{price}"/>
-                
-               </div>
-				<table>
-					<thead>
-						<tr>
-							<th></th>
-							<th></th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr th:each="supply, itemSupply : *{supplies}">
-							<td><input hidden th:name="|supplies[${itemSupply.index}].id|" th:value="${supply.getId()}"/></td>
-							<td><input disabled th:name="|supplies[${itemSupply.index}].name|" th:value="${supply.getSupplyName()}"/></td>
-							<td><input type="checkbox" th:name="|supplies[${itemSupply.index}].added|" /></td>
-						</tr>
-					</tbody>
-				</table>
-				 <p><span>Click here and register a <a href="/" th:href="@{/newSupply}"> new Supply</a></span></p>
-				
-				<div class="form-group">
-	            	<button type="submit" class="btn btn-success">Submit</button>
-	            </div>
-	            
-            </form>
-            </div>
-        </div>
+   <head>
+      <title>Service Update</title>
+      <meta charset="utf-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <!-- Bootstrap CSS -->
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+   </head>
+   <body>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <div class="container">
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+         <ul class="navbar-nav mr -auto">
+            <li class="nav-item active">
+               <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
+               <span class="sr-only">(current)</span>
+               </a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#" th:href="@{/services}">Services</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#" th:href="@{/booking}">Get Booking</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#" th:href="@{/vehicleRegister}">Register new Vehicle</a>
+            </li>
+            <li class="nav-item">
+               <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
+            </li>
+         </ul>
       </div>
-            
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
-    <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
-	<script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
-    
-</body>
+      <div class="container">
+         <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+               <table class="table table-sm	x table-dark">
+                  <thead>
+                     <tr>
+                        <th scope="col"> Date</th>
+                        <th scope="col"> Vehicle</th>
+                        <th scope="col"> Licence</th>
+                        <th scope="col"> Type</th>
+                        <th scope="col"> Description</th>
+                        <th scope="col"> Comments</th>
+                        <th scope="col"> Status</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr th:each="booking: ${bookingEdit.booking}">
+                        <td th:text="${booking.timeStamp}">&nbsp;</td>
+                        <td th:text="${booking.vehicle.make}">&nbsp;</td>
+                        <td th:text="${booking.vehicle.licence}">&nbsp;</td>
+                        <td th:text="${booking.type}">&nbsp;</td>
+                        <td th:text="${booking.description}">&nbsp;</td>
+                        <td th:text="${booking.comments}">&nbsp;</td>
+                        <td th:text="${booking.status}">&nbsp;</td>
+                     </tr>
+                  </tbody>
+               </table>
+               <form th:action="@{/editBooking}" th:object="${bookingEdit}" method="POST" >
+                  <div class="form-group">
+                     <select th:field="*{status}" class=" form-control">
+                        <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
+                        </option>
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <label for="bookingComments" class="control-label">BookingComment</label>
+                     <input id="bookingComments" class=" form-control" th:field="*{bookingComments}"/>
+                  </div>
+                  <div class="form-group">
+                     <label for="price" class="control-label">Service Price</label>
+                     <input id="price" class=" form-control" th:field="*{price}"/>
+                  </div>
+                  <table>
+                     <thead>
+                        <tr>
+                           <th></th>
+                           <th></th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr th:each="supply, itemSupply : *{supplies}">
+                           <td><input hidden th:name="|supplies[${itemSupply.index}].id|" th:value="${supply.getId()}"/></td>
+                           <td><input disabled th:name="|supplies[${itemSupply.index}].name|" th:value="${supply.getSupplyName()}"/></td>
+                           <td><input type="checkbox" th:name="|supplies[${itemSupply.index}].added|" /></td>
+                        </tr>
+                     </tbody>
+                  </table>
+                  <p><span>Click here and register a <a href="/" th:href="@{/newSupply}"> new Supply</a></span></p>
+                  <div class="form-group">
+                     <button type="submit" class="btn btn-success">Submit</button>
+                  </div>
+               </form>
+            </div>
+         </div>
+      </div>
+      <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+      <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+      <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+      <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+      <script type="text/javascript" th:src="@{/webjars/jquery/3.2.1/jquery.min.js/}"></script>
+      <script type="text/javascript" th:src="@{/webjars/bootstrap/3.3.7/js/bootstrap.min.js}"></script>
+   </body>
 </html>

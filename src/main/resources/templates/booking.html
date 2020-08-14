@@ -9,7 +9,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
    </head>
    <body>
- <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
          <div class="container">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav mr -auto">
@@ -24,20 +24,17 @@
                   <li class="nav-item">
                      <a class="nav-link" href="#" th:href="@{/vehicleRegister}">New Vehicle</a>
                   </li>
-                   <li class="nav-item">
+                  <li class="nav-item">
                      <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
                   </li>
-                  
                </ul>
             </div>
-                       
             <a class="navbar-brand">Phone +353 0149 - xxx Social Midias</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
             </button>
          </div>
       </nav>
-     
       <div class="container">
          <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -48,7 +45,7 @@
                <form th:action="@{/booking}" th:object="${booking}" method="POST">
                <p class="error-message" th:if="${#fields.hasGlobalErrors()}" th:each="error : ${#fields.errors('global')}" th:text="${error}">Validation error</p>
                <div class="form-group" >
-                 <label for="vehicle" class="control-label">Vehicle</label>
+                  <label for="vehicle" class="control-label">Vehicle</label>
                   <select th:field="*{vehicleLicence}"class=" form-control">
                      <option th:each="i : ${allVehicle}" th:value="${i.licence}" th:text="${i.licence}">
                      </option>
@@ -57,13 +54,13 @@
                <div class="form-group">
                   <span>New Vehicle or first time? <a href="/" th:href="@{/vehicleRegister}">Register your vehicle here</a></span>
                </div>
-            <!-- <div class="form-group" th:classappend="${#fields.hasErrors('status')} ? 'has-errors': ''">
+               <!-- <div class="form-group" th:classappend="${#fields.hasErrors('status')} ? 'has-errors': ''">
                   <label for="status" class="control-label">Status</label>
                   <select th:field="*{status}" class=" form-control">
                      <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
                      </option>
                   </select>
-               </div> -->
+                  </div> -->
                <div class="form-group" th:classappend="${#fields.hasErrors('type')} ? 'has-errors': ''">
                   <label for="type" class="control-label">Type</label>
                   <select th:field="*{type}" class=" form-control">
@@ -78,7 +75,7 @@
                   <p class="error-message" th:each="error: ${#fields.errors('description')}" th:text="${error}">Validation error</p>
                </div>
                <div class="form-group">
-               <label for="date" class="control-label">Date</label>
+                  <label for="date" class="control-label">Date</label>
                   <select th:field="*{date}" class="form-control">
                      <option th:each="i : ${availableDates}" th:value="${i}" th:text="${i}">
                      </option>

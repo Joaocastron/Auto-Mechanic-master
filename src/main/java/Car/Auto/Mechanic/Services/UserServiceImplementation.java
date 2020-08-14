@@ -20,7 +20,7 @@ public class UserServiceImplementation implements UserService {
 	@Autowired
 	private BCryptPasswordEncoder passwordEncoder;
 
-	// method returning requests for user  from the repository
+	// method returning requests for user from the repository
 	public User findByEmail(String email) {
 		return userRepository.findByEmail(email);
 	}
@@ -47,7 +47,7 @@ public class UserServiceImplementation implements UserService {
 		return userRepository.save(user);
 	}
 
-	// user authentications methods 
+	// user authentications methods
 	@Override
 	public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
 		User user = userRepository.findByEmail(email);

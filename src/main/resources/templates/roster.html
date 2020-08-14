@@ -43,13 +43,13 @@
      
       <form th:action="@{/roster}" th:object="${rosterDTO}" method="POST">
               
-               <div class="form-group">
-               <label for="dateFrom" class="control-label">Date</label>
-                  <select th:field="*{dateFrom}" class="form-control">
-                     <option th:each="i : ${}" th:value="${i}" th:text="${i}">
-                     </option>
-                  </select>
-               </div>
+              
+		             <div class="input-group date" data-provide="datepicker">
+		   			 <input type="text" class="form-control">
+		   		 <div class="input-group-addon">
+		        <span class="glyphicon glyphicon-th"></span>
+		    </div>
+		</div>
                <div class="form-froup">
                   <button type="submit" class="btn btn-success">Booking</button>
                </div>

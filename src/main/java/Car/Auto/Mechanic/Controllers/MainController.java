@@ -17,12 +17,6 @@ public class MainController {
 
 	}
 
-	@GetMapping("/allocate")
-	public String allocate() {
-		return "allocate";
-
-	}
-	
 	@GetMapping("/homeApp")
 	public String homeApp() {
 		return "homeApp";
@@ -34,11 +28,11 @@ public class MainController {
 		return "contacts";
 
 	}
+
 	@GetMapping("/services")
 	public String services() {
 		return "services";
 
 	}
-
 
 }

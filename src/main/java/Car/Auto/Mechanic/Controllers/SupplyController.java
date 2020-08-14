@@ -50,6 +50,6 @@ public class SupplyController {
 
 		supplyService.save(supplyDTO);
 
-		return "redirect:/search?success";
+		return "redirect:/homeApp?success";
 	}
 }

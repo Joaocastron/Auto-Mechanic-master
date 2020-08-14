@@ -9,12 +9,12 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
    </head>
    <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
          <div class="container">
             <div class="collapse navbar-collapse" id="navbarResponsive">
                <ul class="navbar-nav mr -auto">
                   <li class="nav-item active">
-                        <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
+                     <a class="nav-link" href="#" th:href="@{/homeApp}">Home System
                      <span class="sr-only">(current)</span>
                      </a>
                   </li>
@@ -25,15 +25,16 @@
                      <a class="nav-link" href="#" th:href="@{/register}">new Customer</a>
                   </li>
                   <li class="nav-item">
+                     <a class="nav-link" href="#" th:href="@{/newSupply}">New Supply</a>
+                  </li>
+                  <li class="nav-item">
                      <a class="nav-link" href="#" th:href="@{/allocate}">Rostering</a>
                   </li>
-                   <li class="nav-item">
+                  <li class="nav-item">
                      <a class="nav-link" href="#" th:href="@{/logout}">Logout</a>
                   </li>
-                  
                </ul>
             </div>
-                       
             <a class="navbar-brand">Phone +353 0149 - xxx Social Midias</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -43,75 +44,66 @@
       <br>
       <div class="container">
          <div class="row">
-         <div class="col-md-6 col-md-offset-3">
-         
-            <div th:if="${param.success}">
-               <div class="alert alert-info">Thank you for register with us</div>
-            </div>
-            <h1>Serach</h1>
-            
-            <form th:action="@{/search}" th:object="${searchDTO}" method="POST">
-            
-                             
-		       <div class="form-group" th:classappend="${#fields.hasErrors('getName')} ? 'has-errors': ''">
-                  <label for="getName" class="control-label">Customer Name</label>
-                  <input id="getName" class=" form-control" th:field="*{getName}"/>
-                </div>
-                
-                <div class="form-group" th:classappend="${#fields.hasErrors('getPhone')} ? 'has-errors': ''">
-                  <label for="getPhone" class="control-label">Phone</label>
-                  <input id="getPhone" class=" form-control" th:field="*{getPhone}"/>
-                </div>
-                
-                 <div class="form-group" th:classappend="${#fields.hasErrors('getBookingId')} ? 'has-errors': ''">
-                  <label for="getBookingId" class="control-label">Booking ID</label>
-                  <input id="getBookingId" class=" form-control" th:field="*{getBookingId}"/>
-                </div>
-                <div class="form-group">
-                 <label for="getStatus" class="control-label">Status</label>
-                  <select th:field="*{getStatus}" class=" form-control">
-                     <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
-                     </option>
-                  </select>
-                   </div>
-               <div class="form-group">
-                  <button type="submit" class="btn btn-success">Register</button>
+            <div class="col-md-6 col-md-offset-3">
+               <div th:if="${param.success}">
+                  <div class="alert alert-info">Thank you for register with us</div>
                </div>
-            </form>
-            
-            <h2>Bookings</h2>
- 				
-		 <table class="table table-sm	x table-dark">
- 			 <thead>
-    			<tr>
-				<th scope="col"> Date</th>
-    			  <th scope="col"> Vehicle</th>
-    			  <th scope="col"> Licence</th>
-		   	      <th scope="col"> Type</th>
-		   	      <th scope="col"> Description</th>
-		   	      <th scope="col"> Comments</th>
-		   	      <th scope="col"> Status</th>
-		   	      <th scope="col"> Edit</th>
-		      </tr>
-		     </thead>
-		     <tbody>
-		           	<tr th:each="booking: ${searchDTO.booking}">
-		      		<td th:text="${booking.timeStamp}">&nbsp;</td>
-		      		<td th:text="${booking.vehicle.make}">&nbsp;</td>
-		      		<td th:text="${booking.vehicle.licence}">&nbsp;</td>
-		      		<td th:text="${booking.type}">&nbsp;</td>
-		      		<td th:text="${booking.description}">&nbsp;</td>
-		      		<td th:text="${booking.comments}">&nbsp;</td>
-		      		<td th:text="${booking.status}">&nbsp;</td>
-		      		<td><a class="nav-link" href="#" th:href="'/editBooking?bookingId='+${booking.id}">edit</td>
-		      		<td><a class="nav-link" href="#" th:href="'/invoice?bookingId='+${booking.id}">Invoice</td>
-		      		
-		    </tr>
-		  </tbody>
-		</table>
+               <h1>Serach</h1>
+               <form th:action="@{/search}" th:object="${searchDTO}" method="POST">
+                  <div class="form-group" th:classappend="${#fields.hasErrors('getName')} ? 'has-errors': ''">
+                     <label for="getName" class="control-label">Customer Name</label>
+                     <input id="getName" class=" form-control" th:field="*{getName}"/>
+                  </div>
+                  <div class="form-group" th:classappend="${#fields.hasErrors('getPhone')} ? 'has-errors': ''">
+                     <label for="getPhone" class="control-label">Phone</label>
+                     <input id="getPhone" class=" form-control" th:field="*{getPhone}"/>
+                  </div>
+                  <div class="form-group" th:classappend="${#fields.hasErrors('getBookingId')} ? 'has-errors': ''">
+                     <label for="getBookingId" class="control-label">Booking ID</label>
+                     <input id="getBookingId" class=" form-control" th:field="*{getBookingId}"/>
+                  </div>
+                  <div class="form-group">
+                     <label for="getStatus" class="control-label">Status</label>
+                     <select th:field="*{getStatus}" class=" form-control">
+                        <option th:each="i : ${T(Car.Auto.Mechanic.Models.Status).values()}" th:value="${i}" th:text="${i}">
+                        </option>
+                     </select>
+                  </div>
+                  <div class="form-group">
+                     <button type="submit" class="btn btn-success">Register</button>
+                  </div>
+               </form>
+               <h2>Bookings</h2>
+               <table class="table table-sm	x table-dark">
+                  <thead>
+                     <tr>
+                        <th scope="col"> Date</th>
+                        <th scope="col"> Vehicle</th>
+                        <th scope="col"> Licence</th>
+                        <th scope="col"> Type</th>
+                        <th scope="col"> Description</th>
+                        <th scope="col"> Comments</th>
+                        <th scope="col"> Status</th>
+                        <th scope="col"> Edit</th>
+                     </tr>
+                  </thead>
+                  <tbody>
+                     <tr th:each="booking: ${searchDTO.booking}">
+                        <td th:text="${booking.timeStamp}">&nbsp;</td>
+                        <td th:text="${booking.vehicle.make}">&nbsp;</td>
+                        <td th:text="${booking.vehicle.licence}">&nbsp;</td>
+                        <td th:text="${booking.type}">&nbsp;</td>
+                        <td th:text="${booking.description}">&nbsp;</td>
+                        <td th:text="${booking.comments}">&nbsp;</td>
+                        <td th:text="${booking.status}">&nbsp;</td>
+                        <td><a class="nav-link" href="#" th:href="'/editBooking?bookingId='+${booking.id}">edit</td>
+                        <td><a class="nav-link" href="#" th:href="'/invoice?bookingId='+${booking.id}">Invoice</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
          </div>
-     </div>
-     </div>
+      </div>
       <!-- jQuery first, then Popper.js, then Bootstrap JS -->
       <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

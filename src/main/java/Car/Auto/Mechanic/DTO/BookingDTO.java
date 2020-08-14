@@ -1,8 +1,8 @@
 package Car.Auto.Mechanic.DTO;
 
 import java.time.LocalDate;
-
 import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 import Car.Auto.Mechanic.Entity.User;
@@ -12,6 +12,7 @@ import Car.Auto.Mechanic.Models.Status;
 
 public class BookingDTO {
 
+	@NotNull(message = "Register Vehicle First")
 	private Vehicle vehicle;
 	
 	private User Customer;

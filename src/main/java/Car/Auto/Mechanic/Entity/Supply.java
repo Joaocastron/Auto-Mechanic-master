@@ -1,11 +1,10 @@
 package Car.Auto.Mechanic.Entity;
 
-import java.util.Set;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+
 
 import Car.Auto.Mechanic.DTO.SupplyDTO;
 
@@ -31,9 +30,6 @@ public class Supply {
 	private String SupplyName;
 
 	private double price;
-	
-	@ManyToMany(mappedBy = "supplies")
-	private Set<Invoice> invoices;
 
 	public long getId() {
 		return id;
