@@ -32,6 +32,8 @@
             </li>
          </ul>
       </div>
+      </nav>
+      <br>
       <div class="container">
          <div class="row">
             <div class="col-md-6 col-md-offset-3">
@@ -74,6 +76,7 @@
                      <label for="price" class="control-label">Service Price</label>
                      <input id="price" class=" form-control" th:field="*{price}"/>
                   </div>
+                
                   <table>
                      <thead>
                         <tr>
@@ -89,6 +92,7 @@
                         </tr>
                      </tbody>
                   </table>
+                 
                   <p><span>Click here and register a <a href="/" th:href="@{/newSupply}"> new Supply</a></span></p>
                   <div class="form-group">
                      <button type="submit" class="btn btn-success">Submit</button>

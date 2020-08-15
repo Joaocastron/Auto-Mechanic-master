@@ -1,19 +1,15 @@
 package Car.Auto.Mechanic.DTO;
 
-import javax.validation.constraints.NotEmpty;
-
 import Car.Auto.Mechanic.Entity.Supply;
 
 public class SupplyDTO {
 
 	private long id;
-	
-	@NotEmpty(message = "May not be empty")
+
 	private String supplyName;
-	
-	@NotEmpty(message = "May not be empty")
+
 	private double price;
-	
+
 	private boolean added;
 
 	public SupplyDTO() {

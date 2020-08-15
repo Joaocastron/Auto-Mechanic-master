@@ -9,37 +9,34 @@ import Car.Auto.Mechanic.Models.Model;
 
 public class VehicleRegsDTO {
 
-	@NotEmpty
 	private Make make;
-	@NotEmpty
+
 	private Model model;
+
 	@NotEmpty
 	private String year;
+
 	@NotEmpty
 	private String licence;
 
-	@NotEmpty
 	private Engine engine;
 
 	private String comments;
-	
+
 	private User owner;
 
 	public VehicleRegsDTO() {
 		super();
-		
+
 	}
 
-	
 	public User getOwner() {
 		return owner;
 	}
 
-
 	public void setOwner(User owner) {
 		this.owner = owner;
 	}
-
 
 	public Make getMake() {
 		return make;

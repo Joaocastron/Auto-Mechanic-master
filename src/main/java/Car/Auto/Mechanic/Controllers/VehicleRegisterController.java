@@ -49,7 +49,7 @@ public class VehicleRegisterController {
 
 		vehicleService.save(vehicleDTO);
 
-		return "redirect:/userPage?success";
+		return "redirect:/userPage";
 	}
 
 }
